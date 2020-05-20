@@ -1,5 +1,6 @@
 import React from 'react';
 import NewProject from '../projects/NewProject';
+import ListProject from '../projects/ListProject';
 
 const Sidebar = () => {
     return ( 
@@ -7,7 +8,11 @@ const Sidebar = () => {
             <h1>MERN <span>Task</span></h1>
                     <NewProject/>
             <div className="proyectos">
-                <h2>Tus proyectos</h2>
+
+                <h2>Tus Proyectos</h2>
+
+                <ListProject/>
+
             </div>
         </aside>
 
