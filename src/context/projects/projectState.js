@@ -3,30 +3,30 @@
 ////////////////////////LOS STATE///////////////////////////////
 import React, { useReducer } from 'react';
 
-import projectContext from './projectContext'; //importando context
+import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
 
-//Declarando un state inicial 
+//Creando el provider
 const ProjectState = props => {
-
-    const initialState = {
+    //Declarando un state inicial 
+     const initialState = {
         form: false
-    }
+      }
 
-     //Dispath para ejecutar las acciones
-  const [ state, dispatch ] = useReducer(projectReducer, initialState);
+    //Dispath para ejecutar las acciones
+     const [ state, dispatch ] = useReducer(projectReducer, initialState);
 
   //Funciones para el CRUD.
 
   return(
 
-      <projectContext.Provider
+      <ProjectContext.Provider
         value={{ 
             form:state.form
         }}
       >
           {props.children}
-      </projectContext.Provider>
+      </ProjectContext.Provider>
 
   )
 

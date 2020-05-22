@@ -1,6 +1,12 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useContext } from 'react';
+import projectContext from '../../context/projects/projectContext';
 
 const NewProject = () => {
+
+    //obteniendo el state del formulario que esta en context
+    const projectsContext = useContext(projectContext);
+    //Destructurin del context
+    const { form } = projectsContext;
 
     //useState para proyecto nuevo
     const [project, saveProject]= useState({
@@ -40,26 +46,31 @@ const NewProject = () => {
                 Nuevo proyecto
             </button>
 
-            <form className="formulario-nuevo-proyecto"
-              onSubmit={onSubmitProject}
-            >
-                <input 
-                    type="text"
-                    className="input-text"
-                    placeholder="Nombre Proyecto"
-                    value={name}
-                    name="name"
-                    onChange={onChangeProjects}
-                />
+            { form ?
+                    (
+                        <form className="formulario-nuevo-proyecto"
+                            onSubmit={onSubmitProject}
+                            >
+                            <input 
+                                type="text"
+                                className="input-text"
+                                placeholder="Nombre Proyecto"
+                                value={name}
+                                name="name"
+                                onChange={onChangeProjects}
+                            />
 
-                <input 
-                    type="submit"
-                    className="btn btn-primario btn-block"
-                    value="Agregar Proyecto"
-                />
+                            <input 
+                                type="submit"
+                                className="btn btn-primario btn-block"
+                                value="Agregar Proyecto"
+                            />
+                        </form>
+                    ) : null
 
                 
-            </form>
+
+            }
         </Fragment>
      );
 }
