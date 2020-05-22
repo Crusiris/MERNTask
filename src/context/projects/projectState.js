@@ -1,10 +1,11 @@
-/////////////////////////ARCHIVO////////////////////////////////
-//////////////////////PARA MANEJAR//////////////////////////////
-////////////////////////LOS STATE///////////////////////////////
+////////////////////////////ARCHIVO////////////////////////////////
+///////////////////PARA ESCRIBIR LAS FUNCIONES //////////////////////////////
+//////////////////////QUE LLAMAN AL REDUCE/////////////////////
 import React, { useReducer } from 'react';
 
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
+import { FORM_PROJECT } from '../../types';//importando types
 
 //Creando el provider
 const ProjectState = props => {
@@ -16,13 +17,19 @@ const ProjectState = props => {
     //Dispath para ejecutar las acciones
      const [ state, dispatch ] = useReducer(projectReducer, initialState);
 
-  //Funciones para el CRUD.
+    //FUNCIONES.
+    const showFormAddProject = ()=>{
+        dispatch({
+            type: FORM_PROJECT
+        })    
+    }
 
   return(
 
       <ProjectContext.Provider
         value={{ 
-            form:state.form
+            form:state.form,
+            showFormAddProject
         }}
       >
           {props.children}
