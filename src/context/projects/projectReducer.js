@@ -1,5 +1,5 @@
 //  DESDE AQUI SE VAN A CAMBIAR LOS STATE
-import { FORM_PROJECT } from '../../types';
+import { FORM_PROJECT, GET_PROJECTS } from '../../types';
 
 export default (state, action)=>{
     switch (action.type) {
@@ -8,6 +8,11 @@ export default (state, action)=>{
             ...state,
             form:true
          }
+         case GET_PROJECTS:
+                return{
+                   ...state,
+                   projects:action.payload
+                }
 
      default:
         return state;
