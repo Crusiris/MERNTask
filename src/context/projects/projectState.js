@@ -2,10 +2,11 @@
 ///////////////////PARA ESCRIBIR LAS FUNCIONES //////////////////////////////
 //////////////////////QUE LLAMAN AL REDUCE/////////////////////
 import React, { useReducer } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
-import { FORM_PROJECT, GET_PROJECTS } from '../../types';//importando types
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS } from '../../types';//importando types
 
 
 
@@ -43,6 +44,17 @@ const ProjectState = props => {
         })    
     }
 
+    //Funcion agregar proyecto
+    const addProject = project =>{
+        project.id = uuidv4();
+
+        //Agregando el proyect en el state con la funcion DISPATCH
+        dispatch({
+            type:ADD_PROJECTS,
+            payload: project
+        })
+    }
+
 
   return(
 
@@ -51,7 +63,8 @@ const ProjectState = props => {
             projects:state.projects, 
             form:state.form,
             showFormAddProject,
-            getProject
+            getProject,
+            addProject
         }}
       >
           {props.children}

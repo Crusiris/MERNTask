@@ -11,11 +11,10 @@ const ListProject = () => {
    useEffect(() => {
     getProject()
       
-   },[getProject])
+   },[])
 
    if(projects.length === 0) return null;
 
- 
 
     return ( 
         <ul className="listado-proyectos">

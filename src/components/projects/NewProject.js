@@ -6,7 +6,7 @@ const NewProject = () => {
     //obteniendo el state del formulario que esta en context
     const projectsContext = useContext(projectContext);
     //Destructurin del context
-    const { form,  showFormAddProject } = projectsContext;
+    const { form,  showFormAddProject, addProject } = projectsContext;
 
     //useState para proyecto nuevo
     const [project, saveProject]= useState({
@@ -30,14 +30,21 @@ const NewProject = () => {
         e.preventDefault();
 
         //Validar el proyecto
+        if (name===""){
+            return null
+        }
 
-        //Agregar al state
+        //Agregar al state[OJO STA FUNCION VIENE DESDE EL CONTEXT]
+        addProject(project);
 
         //Reiniciar form
+        saveProject({
+            name:""
+        })
     }
 
     //Mostrar formulario
-    const onClickForm = ()=>{
+    const onClickForm = ()=> {
         showFormAddProject();
     }
 
