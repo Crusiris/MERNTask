@@ -1,6 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import projectContext  from '../../context/projects/projectContext';
 
 const FormTask = () => {
+    //Guardando el context en una constante
+    const projectsContext = useContext(projectContext );
+
+    //Extrayendo valores del context
+    const {projselected} = projectsContext;
+
+    //Condicion para cuando no hay ningun proyecto seleccionado
+    if(!projselected) return null;
+
+    //Destructuring del state projselected
+    const [ projectCurrent ] = projselected;
+
     return ( 
         <div className="formulario">
             <form>
