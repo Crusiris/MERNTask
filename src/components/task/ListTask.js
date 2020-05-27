@@ -1,7 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Task from './Task';
+import projectContext from '../../context/projects/projectContext';
 
 const ListTask = () => {
+
+    //Obteniendo context en el componente
+    const projecstContext = useContext(projectContext);
+
+    //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
+    const {projselected} = projecstContext;
+
+    //Condicion para cuando no hay ningun proyecto seleccionado
+    if(!projselected) return <h2>Selecciona un proyecto</h2>
+
+    //Destructuring del state projselected
+    const [ projectCurrent ] = projselected;
 
     const tasksProject = [
         { name:'Elegir plataforma', state:false },
@@ -12,7 +25,7 @@ const ListTask = () => {
 
     return ( 
         <Fragment>  
-            <h2>Proyecto: Tienda virtual</h2>
+            <h2>Proyecto: {projectCurrent.name}</h2>
 
             <ul className="listado-tareas">
 
