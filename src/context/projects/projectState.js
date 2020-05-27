@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURRENT} from '../../types';//importando types
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT} from '../../types';//importando types
 
 
 
@@ -25,7 +25,8 @@ const ProjectState = props => {
         projects: [],
         form: false,
         errorform:false,
-        projselected:null,
+        projselected:null
+        
       }
 
     //Dispath para ejecutar las acciones
@@ -73,6 +74,14 @@ const ProjectState = props => {
          })
     }
 
+    //Funcion que elimina un proyecto
+    const deleteproject = projid => {
+        dispatch({
+            type:DELETE_PROJECT,
+            payload:projid
+        })
+    }
+
 
   return(
 
@@ -86,7 +95,8 @@ const ProjectState = props => {
             getProject,
             addProject,
             showErrorMsj,
-            projectCurrent 
+            projectCurrent,
+            deleteproject
         }}
       >
           {props.children}

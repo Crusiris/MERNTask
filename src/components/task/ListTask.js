@@ -8,7 +8,7 @@ const ListTask = () => {
     const projecstContext = useContext(projectContext);
 
     //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
-    const {projselected} = projecstContext;
+    const { projselected, deleteproject } = projecstContext;
 
     //Condicion para cuando no hay ningun proyecto seleccionado
     if(!projselected) return <h2>Selecciona un proyecto</h2>
@@ -22,6 +22,10 @@ const ListTask = () => {
         { name:'Elegir plataformas de pago', state:false },
         { name:'Elegir Hosting', state:true }
     ]
+
+    const onClickProjectDelete = () => {
+        deleteproject(projectCurrent.id)
+    }
 
     return ( 
         <Fragment>  
@@ -45,6 +49,7 @@ const ListTask = () => {
             <button
             type="button"
             className="btn btn-eliminar"
+            onClick={onClickProjectDelete}
             >Eliminar proyecto &times;</button>
         </Fragment>
      );

@@ -13,7 +13,7 @@ const ListProject = () => {
       
    },[])
 
-   if(projects.length === 0) return null;
+   if(projects.length === 0) return <p>No hay proyectos, Comienza creando uno.</p>;
 
 
     return ( 
