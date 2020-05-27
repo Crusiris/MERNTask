@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE } from '../../types';//importando types
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURRENT} from '../../types';//importando types
 
 
 
@@ -24,7 +24,8 @@ const ProjectState = props => {
      const initialState = { 
         projects: [],
         form: false,
-        errorform:false
+        errorform:false,
+        projselected:null,
       }
 
     //Dispath para ejecutar las acciones
@@ -64,6 +65,14 @@ const ProjectState = props => {
 
     }
 
+    //Funcion que selecciona el proyecto clickeado
+    const projectCurrent = projid => {
+         dispatch({
+             type:PROJECT_CURRENT,
+             payload: projid
+         })
+    }
+
 
   return(
 
@@ -72,10 +81,12 @@ const ProjectState = props => {
             projects:state.projects, 
             form:state.form,
             errorform:state.errorform,
+            projselected: state.projselected,
             showFormAddProject,
             getProject,
             addProject,
-            showErrorMsj
+            showErrorMsj,
+            projectCurrent 
         }}
       >
           {props.children}

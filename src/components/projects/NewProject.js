@@ -3,7 +3,7 @@ import projectContext from '../../context/projects/projectContext';
 
 const NewProject = () => {
 
-    //obteniendo el state del formulario que esta en context
+    //obteniendo el  context con useContext
     const projectsContext = useContext(projectContext);
     //Destructurin del context
     const { form, errorform, showFormAddProject, addProject, showErrorMsj } = projectsContext;
