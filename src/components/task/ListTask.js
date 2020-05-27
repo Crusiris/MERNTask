@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 const ListTask = () => {
 
@@ -10,18 +11,15 @@ const ListTask = () => {
     //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
     const { projselected, deleteproject } = projecstContext;
 
+    //Destructurin del context para obtener el state de projecSelecte 
+    const tasksContext = useContext(taskContext);
+    const { getTasks, tasksProject } = tasksContext;
+
     //Condicion para cuando no hay ningun proyecto seleccionado
     if(!projselected) return <h2>Selecciona un proyecto</h2>
 
     //Destructuring del state projselected
     const [ projectCurrent ] = projselected;
-
-    const tasksProject = [
-        { name:'Elegir plataforma', state:false },
-        { name:'Elegir Colores', state:true },
-        { name:'Elegir plataformas de pago', state:false },
-        { name:'Elegir Hosting', state:true }
-    ]
 
     const onClickProjectDelete = () => {
         deleteproject(projectCurrent.id)
