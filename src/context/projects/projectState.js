@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS } from '../../types';//importando types
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE } from '../../types';//importando types
 
 
 
@@ -23,7 +23,8 @@ const ProjectState = props => {
     //Declarando un state inicial 
      const initialState = { 
         projects: [],
-        form: false
+        form: false,
+        errorform:false
       }
 
     //Dispath para ejecutar las acciones
@@ -55,6 +56,14 @@ const ProjectState = props => {
         })
     }
 
+    //Funcion para mostrar mensaje 
+    const showErrorMsj = ()=>{
+        dispatch({
+            type:ERROR_MESSAGE
+        })
+
+    }
+
 
   return(
 
@@ -62,9 +71,11 @@ const ProjectState = props => {
         value={{
             projects:state.projects, 
             form:state.form,
+            errorform:state.errorform,
             showFormAddProject,
             getProject,
-            addProject
+            addProject,
+            showErrorMsj
         }}
       >
           {props.children}
