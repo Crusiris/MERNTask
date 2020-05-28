@@ -8,10 +8,11 @@ const ListProject = () => {
     const projectsContext = useContext(projectContext);
    //Destructurin del context
    const { projects, getProject } = projectsContext;
+   
 
    useEffect(() => {
-    getProject()
-      
+    getProject();
+    // eslint-disable-next-line
    },[])
 
    if(projects.length === 0) return <p>No hay proyectos, Comienza creando uno.</p>;
@@ -21,7 +22,7 @@ const ListProject = () => {
         <ul className="listado-proyectos">
             <TransitionGroup>
                 {projects.map(project=>(
-                       <CSSTransition  key={projects.id} timeout={200} className="tarea">
+                       <CSSTransition key={project.id} timeout={200} className="tarea">
                             <Project
                             project={project}
                             />

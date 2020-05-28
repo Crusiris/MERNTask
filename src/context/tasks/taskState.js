@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';//importando useReduce
 import { v4 as uuidv4 } from 'uuid';
 import TaskContext from './taskContext'; //importando task context
 import taskReducer from './taskReducer'; //importando reducer
-import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM, DELETE_TASK, STATE_TASK, TASK_CURRENT } from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM, DELETE_TASK, STATE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK } from '../../types'; //importando type
 
 //Creando el provider
 
@@ -83,6 +83,20 @@ const TaskState = props =>{
         })
     }
 
+    //Modificar tarea
+    const updateTask = task =>{
+        dispatch({
+            type: UPDATE_TASK,
+            payload: task
+        })
+    }
+
+    //Limpiando tarea selecionada
+    const cleanTask = ()=>{
+        dispatch({
+            type:CLEAN_TASK
+        })
+    }
 
 
     return(
@@ -98,7 +112,9 @@ const TaskState = props =>{
             validateFormTask,
             deleteTask,
             changeStateTask,
-            selecTaskCurrent
+            selecTaskCurrent,
+            updateTask,
+            cleanTask
           }}
         >
             {props.children}

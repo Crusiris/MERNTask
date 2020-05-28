@@ -11,7 +11,7 @@ const FormTask = () => {
 
      //Destructurin del context para obtener el state de projecSelecte 
      const tasksContext = useContext(taskContext);
-     const { taskselect, addTask, errortask,  validateFormTask, getTasks } = tasksContext;
+     const { taskselect, addTask, errortask,  validateFormTask, getTasks, updateTask, cleanTask } = tasksContext;
 
      useEffect(()=>{
          if(taskselect !== null){
@@ -55,10 +55,20 @@ const FormTask = () => {
             return
         }
 
-        //agregar la nueva tarea
-        task.projectId = projectCurrent.id;
-        task.state=false;
-        addTask(task);
+        //Validando que no este ninguna tarea seleccionada para editar
+        if (taskselect === null){
+
+          //agregar la nueva tarea
+            task.projectId = projectCurrent.id;
+            task.state=false;
+            addTask(task);
+
+        }else{
+            updateTask(task)
+
+            //Eliminamos la tarea seleccionada
+            cleanTask();
+        }
 
         //Obtener y filtrar las tareas del proyecto actual
         getTasks(projectCurrent.id);
