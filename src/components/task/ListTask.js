@@ -13,7 +13,7 @@ const ListTask = () => {
 
     //Destructurin del context para obtener el state de projecSelecte 
     const tasksContext = useContext(taskContext);
-    const { getTasks, tasksProject } = tasksContext;
+    const { tasksProject } = tasksContext;
 
     //Condicion para cuando no hay ningun proyecto seleccionado
     if(!projselected) return <h2>Selecciona un proyecto</h2>
@@ -37,6 +37,7 @@ const ListTask = () => {
                     
                         :   tasksProject.map(task =>(
                                 <Task
+                                key={task.id}
                                 task={task}
                                 />
                             ))

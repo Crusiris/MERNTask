@@ -1,6 +1,30 @@
-import React from 'react'
+import React, {useContext} from 'react';
+import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 const Task = ({task}) => {
+//Obteniendo context en el componente
+  const projecstContext = useContext(projectContext);
+//Destructuring del context [Extrayendo los state y funciones que necesitaremos]
+  const { projselected } = projecstContext;
+
+
+////Obteniendo context en el componente
+const tasksContext = useContext(taskContext);
+//Destructuring del context [Extrayendo los state y funciones que necesitaremos]
+const { deleteTask, getTasks } = tasksContext;
+
+
+//Destructuring del state projselected
+const [ projectCurrent ] = projselected;
+
+//Funcion eliminar tarea
+const onClickDelete = id =>{
+    deleteTask(id);
+    getTasks(projectCurrent.id);
+}
+
+
     return ( 
         <li className="tarea sombra">
             <p>{task.name}</p>
@@ -33,6 +57,7 @@ const Task = ({task}) => {
 <button
                 type="button"
                 className="btn btn-secundario"
+                onClick={ () => onClickDelete(task.id) }
                 >Eliminar</button>
             </div>
 

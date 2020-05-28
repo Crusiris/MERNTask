@@ -1,4 +1,4 @@
-import { TASKS_PROJECT, ADD_TASK, ERROR_TAREAFORM } from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK, ERROR_TAREAFORM, DELETE_TASK } from '../../types'; //importando type
 
 export default (state, action) => {
     switch (action.type) {
@@ -17,6 +17,11 @@ export default (state, action) => {
             return{
                 ...state,
                 errortask: true
+            }
+        case DELETE_TASK:
+            return{
+                ...state,
+                tasks:state.tasks.filter(task => task.id !== action.payload)
             }
         
         default:
