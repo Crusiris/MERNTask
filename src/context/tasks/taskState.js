@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';//importando useReduce
 import TaskContext from './taskContext'; //importando task context
 import taskReducer from './taskReducer'; //importando reducer
-import { TASKS_PROJECT } from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK } from '../../types'; //importando type
 
 //Creando el provider
 
@@ -39,6 +39,14 @@ const TaskState = props =>{
         })
     }
 
+    //Agregando tarea
+    const addTask = task =>{
+        dispatch({
+            type:ADD_TASK,
+            payload:task
+        })
+    }
+
 
 
     return(
@@ -47,7 +55,8 @@ const TaskState = props =>{
           value={{
             tasks:state.tasks,
             tasksProject:state.tasksProject,
-            getTasks
+            getTasks,
+            addTask
           }}
         >
             {props.children}
