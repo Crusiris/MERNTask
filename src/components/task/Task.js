@@ -12,7 +12,7 @@ const Task = ({task}) => {
 ////Obteniendo context en el componente
 const tasksContext = useContext(taskContext);
 //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
-const { deleteTask, getTasks, changeStateTask} = tasksContext;
+const { deleteTask, getTasks, changeStateTask, selecTaskCurrent} = tasksContext;
 
 
 //Destructuring del state projselected
@@ -33,6 +33,11 @@ const changeState = task =>{
     }
 
     changeStateTask(task);
+}
+
+//Obteniendo tarea a editar
+const selectTask = task => {
+    selecTaskCurrent(task)
 }
 
 
@@ -66,9 +71,10 @@ const changeState = task =>{
                 <button
                 type="button"
                 className="btn btn-primario"
+                onClick={()=> selectTask(task)}
                 >Editar</button>
 
-<button
+                <button
                 type="button"
                 className="btn btn-secundario"
                 onClick={ () => onClickDelete(task.id) }

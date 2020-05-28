@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import projectContext  from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
 
@@ -11,7 +11,18 @@ const FormTask = () => {
 
      //Destructurin del context para obtener el state de projecSelecte 
      const tasksContext = useContext(taskContext);
-     const { addTask, errortask,  validateFormTask, getTasks } = tasksContext;
+     const { taskselect, addTask, errortask,  validateFormTask, getTasks } = tasksContext;
+
+     useEffect(()=>{
+         if(taskselect !== null){
+            saveTask(taskselect)
+
+         }else{
+            saveTask({
+                name:''
+            })
+         }
+     },[taskselect])
 
     //State del formulario
     const [ task, saveTask ] = useState({
@@ -77,7 +88,7 @@ const FormTask = () => {
                     <input 
                     type="submit"
                     className="btn btn-primario btn-submit btn-block"
-                    value="Agregar Tarea"
+                    value={taskselect ? 'Editar Tarea ': 'Agregar Tarea'}
                     />
                 </div>
             </form>
