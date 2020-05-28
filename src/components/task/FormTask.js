@@ -11,7 +11,7 @@ const FormTask = () => {
 
      //Destructurin del context para obtener el state de projecSelecte 
      const tasksContext = useContext(taskContext);
-     const { addTask } = tasksContext;
+     const { addTask, errortask,  validateFormTask, getTasks } = tasksContext;
 
     //State del formulario
     const [ task, saveTask ] = useState({
@@ -39,12 +39,22 @@ const FormTask = () => {
         e.preventDefault();
 
         //validar
-        //pasar la validacion
+        if(name.trim() === ''){
+            validateFormTask();
+            return
+        }
+
         //agregar la nueva tarea
         task.projectId = projectCurrent.id;
         task.state=false;
         addTask(task);
+
+        //Obtener y filtrar las tareas del proyecto actual
+        getTasks(projectCurrent.id);
         //reiniciar el form
+        saveTask({
+            name:''
+        })
     
     }
 
@@ -71,6 +81,7 @@ const FormTask = () => {
                     />
                 </div>
             </form>
+            {errortask ? <p className="mensaje error"> El nombre de la tarea es obligatorio </p>:null}
         </div>
      );
 }

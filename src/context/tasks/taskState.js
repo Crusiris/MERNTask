@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';//importando useReduce
 import TaskContext from './taskContext'; //importando task context
 import taskReducer from './taskReducer'; //importando reducer
-import { TASKS_PROJECT, ADD_TASK } from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM} from '../../types'; //importando type
 
 //Creando el provider
 
@@ -23,7 +23,8 @@ const TaskState = props =>{
         { name:'Elegir plataformas de pago', state:false, projectId:3 },
         { name:'Elegir Hosting', state:true, projectId:3 }
         ],
-        tasksProject:null
+        tasksProject:null,
+        errortask:false
       }
 
     //Dispath para ejecutar las acciones
@@ -47,6 +48,13 @@ const TaskState = props =>{
         })
     }
 
+    //Validar formulario tareas
+    const validateFormTask = () =>{
+        dispatch({
+            type:ERROR_TAREAFORM
+        })
+    }
+
 
 
     return(
@@ -55,8 +63,10 @@ const TaskState = props =>{
           value={{
             tasks:state.tasks,
             tasksProject:state.tasksProject,
+            errortask:state.errortask,
             getTasks,
-            addTask
+            addTask,
+            validateFormTask
           }}
         >
             {props.children}
