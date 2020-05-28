@@ -17,7 +17,7 @@ export default (state, action) => {
         case ADD_PROJECTS:
             return {
                 ...state, //Copia del state
-                projects: [...state.projects, action.payload], //Agregando a esa copia DEL STATE el proyecto nuevo
+                projects: [action.payload, ...state.projects], //Agregando a esa copia DEL STATE el proyecto nuevo
                 form: false, //Oculto el input de agregar formulario
                 errorform: false //No hay error asi que se cambia el estado que maneja el error a false
             }
