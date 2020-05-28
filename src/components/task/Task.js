@@ -12,7 +12,7 @@ const Task = ({task}) => {
 ////Obteniendo context en el componente
 const tasksContext = useContext(taskContext);
 //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
-const { deleteTask, getTasks } = tasksContext;
+const { deleteTask, getTasks, changeStateTask} = tasksContext;
 
 
 //Destructuring del state projselected
@@ -23,6 +23,18 @@ const onClickDelete = id =>{
     deleteTask(id);
     getTasks(projectCurrent.id);
 }
+
+//Cambiar estado de tarea
+const changeState = task =>{
+    if(task.state){
+        task.state = false;
+    }else{
+        task.state = true;
+    }
+
+    changeStateTask(task);
+}
+
 
 
     return ( 
@@ -35,6 +47,7 @@ const onClickDelete = id =>{
                             <button
                             type="button"
                             className="completo"
+                            onClick={()=> changeState(task)}
                             >Completo</button>
                         )
                     :
@@ -43,6 +56,7 @@ const onClickDelete = id =>{
                             <button
                             type="button"
                             className="incompleto"
+                            onClick={()=> changeState(task)}
                             >Incompleto</button>
                         )
 

@@ -9,5 +9,4 @@ export const TASKS_PROJECT = 'DELETE_PROJECT';
 export const ADD_TASK = 'ADD_TASKS';
 export const ERROR_TAREAFORM = 'ERROR_TAREAFORM'; 
 export const DELETE_TASK = 'DELETE_TASK';
-export const COMPLETE_TASK = 'COMPLETE_TASK';
-export const INCOMPLETE_TASK = 'INCOMPLETE_TASK  '
+export const STATE_TASK = 'STATE_TASK';
