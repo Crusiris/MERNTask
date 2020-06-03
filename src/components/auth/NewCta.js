@@ -1,7 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import ValidationContext from '../../context/validation/validationContext';
  
 const NewCta = () => {
+
+    //Extraer los valores del context
+    const validationContext = useContext(ValidationContext);
+    const { alertmsg, showMsjAlert } = validationContext
 
     //State para datos login
     const [ user, saveUser ] = useState({
@@ -25,13 +30,27 @@ const NewCta = () => {
     const onSubmit = e =>{
         e.preventDefaul();
 
-        //Validaciones
-
+        //Validando que no existan campos vacios
+        if(name.trim() === '' || email.trim() === '' || password.trim() === '' || confirm.trim() === ''){
+            showMsjAlert('Todos los campos son obligatorios','alerta-error');
+            return;
+        }
+        //Validando que el password sea de minimo 6 caracteres
+        if(password.length < 6 ){
+            showMsjAlert('El Password debe ser de 6 caracteres','alerta-error');
+            return;
+        }
+        //Validando que los password son iguales
+        if(password !== confirm ){
+            showMsjAlert('Los Passwords no coinciden ','alerta-error');
+            return;
+        }
         //Funcion que inicia sesion
     }
 
     return ( 
         <div className="form-usuario">
+            {alertmsg ? (<div className={`alerta $alerta.category`}> {alertmsg.msg} </div>) :null}
             <div className="contenedor-form sombra-dark" >
                     <h1>Obtener Cuenta</h1>
 

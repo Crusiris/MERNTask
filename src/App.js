@@ -5,11 +5,13 @@ import NewCta from './components/auth/NewCta';
 import Projects from './components/projects/Projects';
 import ProjectState from './context/projects/projectState';
 import TaskState from './context/tasks/taskState';
+import ValidationState from './context/validation/validationState';
 
 function App() {
   return (
     <ProjectState>
       <TaskState>
+        <ValidationState>
         <Router>
             <Switch>
               <Route exact path="/" component={Login}/>
@@ -17,6 +19,7 @@ function App() {
               <Route exact path="/projects" component={Projects}/>
             </Switch>
         </Router>
+        </ValidationState>
       </TaskState>
     </ProjectState>
   );
