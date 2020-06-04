@@ -1,16 +1,28 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import ValidationContext from '../../context/validation/validationContext';
 import AuthContext from '../../context/auth/authContext';
 
-const NewCta = () => {
+const NewCta = (props) => {
 
     //Extraer los valores del context
     const validationContext = useContext(ValidationContext);
     const { alertmsg, showMsjAlert } = validationContext
 
     const authContext = useContext(AuthContext);
-    const {singInUser} = authContext;
+    const {message, authenticated, singInUser} = authContext;
+
+    //En caso de que el usuario ya exista
+    useEffect(() => {
+        if(authenticated){
+            props.history.push('/proyectos')
+        }
+
+        if(message){
+            showMsjAlert(message.msg, message.category);
+        }
+        
+    }, [message, authenticated, ]);
 
     //State para datos login
     const [ user, saveUser ] = useState({

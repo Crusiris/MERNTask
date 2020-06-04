@@ -29,10 +29,10 @@ const AuthState = props => {
             })
 
         } catch (error) {
-            //console.log(error.response.data);
+           // console.log(error.response.data.msg);
 
-            const alertmsg={
-                msg:error.response.data,
+            const alertmsg = {
+                msg:error.response.data.msg,
                 category:'alerta-error'
             }
             dispatch({
