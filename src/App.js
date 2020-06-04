@@ -6,19 +6,24 @@ import Projects from './components/projects/Projects';
 import ProjectState from './context/projects/projectState';
 import TaskState from './context/tasks/taskState';
 import ValidationState from './context/validation/validationState';
+import AuthState from './context/auth/authState';
 
 function App() {
+console.log(process.env.REACT_APP_BACKEND_URL);
+
   return (
     <ProjectState>
       <TaskState>
         <ValidationState>
-        <Router>
-            <Switch>
-              <Route exact path="/" component={Login}/>
-              <Route exact path="/nueva-cuenta" component={NewCta}/>
-              <Route exact path="/projects" component={Projects}/>
-            </Switch>
-        </Router>
+          <AuthState>
+              <Router>
+                  <Switch>
+                    <Route exact path="/" component={Login}/>
+                    <Route exact path="/nueva-cuenta" component={NewCta}/>
+                    <Route exact path="/projects" component={Projects}/>
+                  </Switch>
+              </Router>
+        </AuthState>
         </ValidationState>
       </TaskState>
     </ProjectState>

@@ -17,6 +17,14 @@ export const TASK_CURRENT = 'TASK_CURRENT';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLEAN_TASK = 'CLEAN_TASK';
 
-//////////////////VALIDACIÓN///////////////////
+//////////////////VALIDACIÓN DE CAMPOS///////////////////
 export const SHOW_MSG = 'SHOW_MSG';
 export const HIDE_MSG = 'IDE_MSG';
+
+//////////////////AUTHENTIFICACION/////////////////////
+export const SINGIN_SUCCESS = 'SINGIN_SUCCESS';
+export const SINGIN_FAILURE = 'SINGIN_FAILURE';
+export const GET_USER = 'GET_USER';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const SIGN_OFF = 'SIGN_OFF';

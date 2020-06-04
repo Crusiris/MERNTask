@@ -1,12 +1,16 @@
 import React, {useState, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import ValidationContext from '../../context/validation/validationContext';
- 
+import AuthContext from '../../context/auth/authContext';
+
 const NewCta = () => {
 
     //Extraer los valores del context
     const validationContext = useContext(ValidationContext);
     const { alertmsg, showMsjAlert } = validationContext
+
+    const authContext = useContext(AuthContext);
+    const {singInUser} = authContext;
 
     //State para datos login
     const [ user, saveUser ] = useState({
@@ -27,8 +31,8 @@ const NewCta = () => {
         })
     }
 
-    const onSubmit = e =>{
-        e.preventDefaul();
+    const signIn = e =>{
+        e.preventDefault();
 
         //Validando que no existan campos vacios
         if(name.trim() === '' || email.trim() === '' || password.trim() === '' || confirm.trim() === ''){
@@ -46,16 +50,21 @@ const NewCta = () => {
             return;
         }
         //Funcion que inicia sesion
+        singInUser({
+            name,
+            email,
+            password
+        })
     }
 
-    return ( 
+    return (   
         <div className="form-usuario">
-            {alertmsg ? (<div className={`alerta $alerta.category`}> {alertmsg.msg} </div>) :null}
+            {alertmsg ? (<div className={`alerta ${alertmsg.category}`}> {alertmsg.msg} </div>) :null}
             <div className="contenedor-form sombra-dark" >
                     <h1>Obtener Cuenta</h1>
 
                     <form
-                    onSubmit={onSubmit}
+                    onSubmit={signIn}
                     >
                         <div className="campo-form">
                             <label htmlFor="name">Nombre</label>
