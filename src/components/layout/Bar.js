@@ -4,7 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 const Bar = () => {
  //Extraer la context
  const authContext = useContext(AuthContext);
- const {user, userAuth } = authContext;
+ const {user, userAuth, signOff } = authContext;
 
  useEffect(() => {
     userAuth();
@@ -16,7 +16,9 @@ const Bar = () => {
             {user ? <p className="nombre-usuario">Hola <span>{user.name}</span> </p> : null}
             
             <nav className="nav-principal">
-                <a href="#!">Cerrar sesion</a>
+                <button className="btn btn-blank"
+                onClick={ ()=> signOff() }
+                >Cerrar sesion</button>
             </nav>
 
         </header>
