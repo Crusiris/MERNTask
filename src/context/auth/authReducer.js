@@ -21,10 +21,11 @@ export default (state, action) => {
                token:null,
                message:action.payload    
             }
-        // case GET_USER:
-        //     return {
-                       
-        //     }    
+        case GET_USER:
+            return {
+                ...state,
+                user:action.payload
+            }    
         // case LOGIN_SUCCESS:
         //     return {
                            

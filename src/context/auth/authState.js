@@ -3,6 +3,7 @@ import AuthContext from './authContext'; //importando task context
 import AuthReducer from './authReducer'; //importando reducer
 import { SINGIN_SUCCESS, SINGIN_FAILURE, GET_USER, LOGIN_SUCCESS, LOGIN_FAILURE, SIGN_OFF } from '../../types'; //importando type
 import clientAxios from '../../config/axios'; //Importando cliente axios
+import tokenAuth from '../../config/tokenAuth';
 
 //Creando el provider
 const AuthState = props => {
@@ -51,11 +52,16 @@ const AuthState = props => {
         const token = localStorage.getItem('token');
         if(token){
             //Funcion para enviar el token al backend a traves de los headers
+            tokenAuth(token);
         }
 
         try {
             const res = await clientAxios.get('/api/auth');
             console.log(res);
+            dispatch({
+                type: GET_USER,
+               payload: res.data
+            })
         } catch (error) {
             dispatch({
                 type:LOGIN_FAILURE
