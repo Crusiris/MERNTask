@@ -18,7 +18,7 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
     //FUNCIONES
-    //Registrar usuario
+    //REGISTRAR USUARIO
     const singInUser = async data => {
         try {
             const res = await clientAxios.post('/api/usuarios', data);
@@ -45,7 +45,7 @@ const AuthState = props => {
         }
     }
 
-    //Retornar el usuario autenticado
+    //OBTIENE Y RETORNA el usuario autenticado
     const userAuth = async()=>{
         //Obtenemos token alojado en el localstorage
         const token = localStorage.getItem('token');
@@ -67,6 +67,26 @@ const AuthState = props => {
         }
     }
 
+    //INICIO DE SESION 
+    const logIn = async data =>{
+        try {
+            //Peticion post al ENDPOIND
+            const res = await clientAxios.post('/api/auth');
+            console.log(res);
+            
+        } catch (error) {
+            
+            const alertmsg = {
+                msg:error.response.data.msg,
+                category:'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_FAILURE,
+               payload: alertmsg
+            })
+        }
+    }
+
     return ( <AuthContext.Provider
          value = {
             {
@@ -74,7 +94,8 @@ const AuthState = props => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                singInUser
+                singInUser,
+                logIn
             }
         }> { props.children } 
         </AuthContext.Provider>
