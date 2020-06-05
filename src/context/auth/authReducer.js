@@ -12,7 +12,10 @@ export default (state, action) => {
                authenticated:true,
                message:null
             }
+
+        case LOGIN_FAILURE:
         case SINGIN_FAILURE:
+            localStorage.removeItem('token');
             return {
                ...state,
                token:null,
@@ -26,10 +29,7 @@ export default (state, action) => {
         //     return {
                            
         //     }
-        // case LOGIN_FAILURE:
-        //     return {
-                               
-        //     }
+        
         // case SIGN_OFF:
         //     return {
                            

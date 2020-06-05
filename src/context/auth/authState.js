@@ -17,7 +17,7 @@ const AuthState = props => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
     //FUNCIONES
-    //REgistrar usuario
+    //Registrar usuario
     const singInUser = async data => {
         try {
             const res = await clientAxios.post('/api/usuarios', data);
@@ -27,6 +27,9 @@ const AuthState = props => {
                 type: SINGIN_SUCCESS,
                 payload:res.data
             })
+
+            //Obtener el usuario
+            userAuth();
 
         } catch (error) {
            // console.log(error.response.data.msg);
@@ -38,6 +41,24 @@ const AuthState = props => {
             dispatch({
                 type: SINGIN_FAILURE,
                payload: alertmsg
+            })
+        }
+    }
+
+    //Retornar el usuario autenticado
+    const userAuth = async()=>{
+        //Obtenemos token alojado en el localstorage
+        const token = localStorage.getItem('token');
+        if(token){
+            //Funcion para enviar el token al backend a traves de los headers
+        }
+
+        try {
+            const res = await clientAxios.get('/api/auth');
+            console.log(res);
+        } catch (error) {
+            dispatch({
+                type:LOGIN_FAILURE
             })
         }
     }
