@@ -1,15 +1,27 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';//Importando Context
 import ValidationContext from '../../context/validation/validationContext';//Importando Context
  
-const Login = () => {
+const Login = (props) => {
 
     const validationContext = useContext(ValidationContext);//Extrayendo context usando USECONTEXT()
     const { alertmsg, showMsjAlert } = validationContext; //Extrayendo funciones y state del context
 
     const authContext = useContext(AuthContext);//Extrayendo context usando USECONTEXT()
     const { message, authenticated, logIn } = authContext;//Extrayendo funciones y state del context
+
+      //En caso de que el usuario ya exista
+      useEffect(() => {
+        if(authenticated){
+            props.history.push('/proyectos')
+        }
+
+        if(message){
+            showMsjAlert(message.msg, message.category);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [message, authenticated, ]);
 
     //State para datos login
     const [ user, saveUser ] = useState({
@@ -21,7 +33,7 @@ const Login = () => {
     const { email, password } =  user;
 
     //Obteniendo los datos del input y guardandolos en el state
-    const onChangeLogin= (e) =>{
+    const onChangeLogin= e =>{
         saveUser({
             ...user,
             [e.target.name] : e.target.value
@@ -36,7 +48,7 @@ const Login = () => {
             showMsjAlert('Todos los campos son obligatorios','alerta-error');
             return;
         }
-
+        
         //Funcion que inicia sesion
         logIn({ email, password })
     }
@@ -71,6 +83,7 @@ const Login = () => {
                                 value={password}
                                 placeholder="Tu Password"
                                 onChange={onChangeLogin}
+                                
                                 />
                         </div>
 

@@ -71,11 +71,17 @@ const AuthState = props => {
     const logIn = async data =>{
         try {
             //Peticion post al ENDPOIND
-            const res = await clientAxios.post('/api/auth');
-            console.log(res);
-            
+            const res = await clientAxios.post('/api/auth', data);
+            dispatch({
+                type:LOGIN_SUCCESS,
+                payload:res.data
+            });
+
+             //Obtener el usuario
+             userAuth();
+
         } catch (error) {
-            
+            console.log(error.response.data.msg);
             const alertmsg = {
                 msg:error.response.data.msg,
                 category:'alerta-error'
@@ -95,7 +101,8 @@ const AuthState = props => {
                 user: state.user,
                 message: state.message,
                 singInUser,
-                logIn
+                logIn,
+                userAuth
             }
         }> { props.children } 
         </AuthContext.Provider>

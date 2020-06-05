@@ -21,7 +21,7 @@ const NewCta = (props) => {
         if(message){
             showMsjAlert(message.msg, message.category);
         }
-        
+       // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [message, authenticated, ]);
 
     //State para datos login

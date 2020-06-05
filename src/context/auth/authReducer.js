@@ -4,7 +4,7 @@ import { SINGIN_SUCCESS, SINGIN_FAILURE, GET_USER, LOGIN_SUCCESS, LOGIN_FAILURE,
 export default (state, action) => {
 
     switch (action.type) {
-
+        case LOGIN_SUCCESS:
         case SINGIN_SUCCESS:
             localStorage.setItem('token',action.payload.token);
             return {
