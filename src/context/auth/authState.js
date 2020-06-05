@@ -22,7 +22,6 @@ const AuthState = props => {
     const singInUser = async data => {
         try {
             const res = await clientAxios.post('/api/usuarios', data);
-            
 
             dispatch({
                 type: SINGIN_SUCCESS,
@@ -57,10 +56,9 @@ const AuthState = props => {
 
         try {
             const res = await clientAxios.get('/api/auth');
-            console.log(res);
             dispatch({
                 type: GET_USER,
-               payload: res.data
+               payload: res.data.user
             })
         } catch (error) {
             dispatch({
