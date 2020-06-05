@@ -8,6 +8,7 @@ import TaskState from './context/tasks/taskState';
 import ValidationState from './context/validation/validationState';
 import AuthState from './context/auth/authState';
 import tokenAuth from './config/tokenAuth';
+import RouterPrivate from './components/router/routerPrivate';
 
 //Revisando si tenemos token
 const token = localStorage.getItem('token');
@@ -27,7 +28,7 @@ console.log(process.env.REACT_APP_BACKEND_URL);
                   <Switch>
                     <Route exact path="/" component={Login}/>
                     <Route exact path="/nueva-cuenta" component={NewCta}/>
-                    <Route exact path="/proyectos" component={Projects}/>
+                    <RouterPrivate exact path="/proyectos" component={Projects}/>
                   </Switch>
               </Router>
         </AuthState>
