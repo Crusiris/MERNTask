@@ -5,7 +5,7 @@ import React, { useReducer } from 'react';
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
 import clientAxios from '../../config/axios'; //Importando cliente axios
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT} from '../../types';//importando types
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS,PROJECT_ERROR, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT} from '../../types';//importando types
 
 
 
@@ -17,7 +17,8 @@ const ProjectState = props => {
         projects: [],
         form: false,
         errorform:false,
-        projselected:null
+        projselected:null,
+        message:null
         
       }
 
@@ -44,7 +45,15 @@ const ProjectState = props => {
                 payload:res.data.project
             })
         } catch (error) {
-            console.log(error);
+            const alertmsg = {
+                msg:'Hubo un error',
+                category:'alerta-error'
+            }
+                dispatch({
+                    type:PROJECT_ERROR,
+                    payload:alertmsg
+                })
+            
         }
     }
 
@@ -61,7 +70,16 @@ const ProjectState = props => {
                 payload:res.data
             })
         } catch (error) {
-            console.log(error)
+            
+            const alertmsg = {
+                msg:'Hubo un error',
+                category:'alerta-error'
+            }
+                dispatch({
+                    type:PROJECT_ERROR,
+                    payload:alertmsg
+                })
+
         }
 
        
@@ -86,18 +104,24 @@ const ProjectState = props => {
     //Funcion que elimina un proyecto
     const deleteproject = async projid => {
 
-    try {
-       await clientAxios.delete(`/api/proyectos/${projid}`);
-       
-        dispatch({
-            type:DELETE_PROJECT,
-            payload:projid
-        })
-    } catch (error) {
-        console.log(error.response);
-    }
-
+        try {
+        await clientAxios.delete(`/api/proyectos/${projid}`);
         
+            dispatch({
+                type:DELETE_PROJECT,
+                payload:projid
+            })
+        } catch (error) {
+            // console.log(error.response.data.msg);
+            const alertmsg = {
+                msg:'Hubo un error',
+                category:'alerta-error'
+            }
+            dispatch({
+                type:PROJECT_ERROR,
+                payload:alertmsg
+            })
+        }
     }
 
 
@@ -109,6 +133,7 @@ const ProjectState = props => {
             form:state.form,
             errorform:state.errorform,
             projselected: state.projselected,
+            message:state.message,
             showFormAddProject,
             getProject,
             addProject,

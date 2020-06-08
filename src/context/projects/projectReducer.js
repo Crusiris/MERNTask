@@ -1,5 +1,5 @@
 //  DESDE AQUI SE VAN A CAMBIAR LOS STATE
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT } from '../../types'; //importando types
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, PROJECT_ERROR, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT } from '../../types'; //importando types
 
 
 export default (state, action) => {
@@ -37,6 +37,11 @@ export default (state, action) => {
                 projects: state.projects.filter(project => project._id !== action.payload),
                 projselected: null
 
+            }
+        case PROJECT_ERROR:
+            return{
+                ...state,
+                message:action.payload
             }
 
 

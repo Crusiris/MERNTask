@@ -7,6 +7,7 @@ export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 export const PROJECT_CURRENT = 'PROJECT_CURRENT';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const TASKS_PROJECT = 'DELETE_PROJECT';
+export const PROJECT_ERROR = 'PROJECT_ERROR';
 
 ///////////////TAREAS//////////////////
 export const ADD_TASK = 'ADD_TASKS';
