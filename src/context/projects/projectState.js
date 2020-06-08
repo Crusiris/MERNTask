@@ -2,10 +2,9 @@
 ///////////////////PARA ESCRIBIR LAS FUNCIONES //////////////////////////////
 //////////////////////QUE LLAMAN AL REDUCE/////////////////////
 import React, { useReducer } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
+import clientAxios from '../../config/axios'; //Importando cliente axios
 import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT} from '../../types';//importando types
 
 
@@ -34,12 +33,13 @@ const ProjectState = props => {
      
      /////////////////////////////
     /////////FUNCIONES///////////
+    //Mostrando formulario para agregar proyecto
     const showFormAddProject = ()=>{
         dispatch({
             type: FORM_PROJECT
         })    
     }
-
+    //Obtener proyecto
     const getProject = () =>{
         dispatch({
             type: GET_PROJECTS,
@@ -48,14 +48,23 @@ const ProjectState = props => {
     }
 
     //Funcion agregar proyecto
-    const addProject = project =>{
-        project.id = uuidv4();
+    const addProject = async project =>{
+       
+        try {
+            //haciendo la peticion
+            const res = await clientAxios.post('/api/proyectos', project);
+            console.log(res);
 
-        //Agregando el proyect en el state con la funcion DISPATCH
-        dispatch({
-            type:ADD_PROJECTS,
-            payload: project
-        })
+             //Agregando el proyect en el state con la funcion DISPATCH
+            dispatch({
+                type:ADD_PROJECTS,
+                payload:res.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+       
     }
 
     //Funcion para mostrar mensaje 
