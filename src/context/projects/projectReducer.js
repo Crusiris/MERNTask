@@ -29,7 +29,7 @@ export default (state, action) => {
         case PROJECT_CURRENT:
             return {
                 ...state, //Copia del state
-                projselected: state.projects.filter(project => project.id === action.payload) //asignando el proyecto sleccionado          
+                projselected: state.projects.filter(project => project._id === action.payload) //asignando el proyecto sleccionado          
             }
         case DELETE_PROJECT:
             return {
