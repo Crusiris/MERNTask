@@ -1,4 +1,4 @@
-import React,{ useEffect, useContext, Component }from 'react';
+import React,{ useEffect, useContext }from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 
@@ -9,6 +9,7 @@ const { authenticated, loading, userAuth } = authContext;
 
 useEffect(()=>{
     userAuth();
+   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
     return(

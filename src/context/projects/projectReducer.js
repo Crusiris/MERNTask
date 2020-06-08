@@ -34,7 +34,7 @@ export default (state, action) => {
         case DELETE_PROJECT:
             return {
                 ...state, //Copia del state
-                projects: state.projects.filter(project => project.id !== action.payload),
+                projects: state.projects.filter(project => project._id !== action.payload),
                 projselected: null
 
             }

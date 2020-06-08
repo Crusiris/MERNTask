@@ -84,11 +84,20 @@ const ProjectState = props => {
     }
 
     //Funcion que elimina un proyecto
-    const deleteproject = projid => {
+    const deleteproject = async projid => {
+
+    try {
+       await clientAxios.delete(`/api/proyectos/${projid}`);
+       
         dispatch({
             type:DELETE_PROJECT,
             payload:projid
         })
+    } catch (error) {
+        console.log(error.response);
+    }
+
+        
     }
 
 
