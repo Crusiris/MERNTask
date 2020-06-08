@@ -12,13 +12,6 @@ import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS, ERROR_MESSAGE, PROJECT_CURREN
 //Creando el provider
 const ProjectState = props => {
 
-    const projectss = [
-        { id:1, name: 'Tienda Virtual'},
-        { id:2, name: 'Intranet'},
-        { id:3, name:'Diseño de sitio web'},
-        { id:4, name:'MERN'}
-    ]
-
     //Declarando un state inicial 
      const initialState = { 
         projects: [],
@@ -40,11 +33,19 @@ const ProjectState = props => {
         })    
     }
     //Obtener proyecto
-    const getProject = () =>{
-        dispatch({
-            type: GET_PROJECTS,
-            payload:projectss
-        })    
+    const getProject = async () =>{
+           
+        try {
+            //Peticion a la base de batos
+            const res = await clientAxios.get('/api/proyectos');
+            
+            dispatch({
+                type: GET_PROJECTS,
+                payload:res.data.project
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Funcion agregar proyecto
@@ -53,7 +54,6 @@ const ProjectState = props => {
         try {
             //haciendo la peticion
             const res = await clientAxios.post('/api/proyectos', project);
-            console.log(res);
 
              //Agregando el proyect en el state con la funcion DISPATCH
             dispatch({
