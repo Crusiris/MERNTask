@@ -1,4 +1,4 @@
-import { TASKS_PROJECT, ADD_TASK, ERROR_TAREAFORM, DELETE_TASK, STATE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK} from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK, ERROR_TAREAFORM, DELETE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK} from '../../types'; //importando type
 
 export default (state, action) => {
     switch (action.type) {
@@ -25,10 +25,9 @@ export default (state, action) => {
                 tasksProject: state.tasksProject.filter(task => task._id !== action.payload)
             }
         case UPDATE_TASK:   
-        case STATE_TASK:
                 return {
                     ...state,
-                    tasksProject: state.tasksProject.map(task => task.id === action.payload.id ? action.payload : task)
+                    tasksProject: state.tasksProject.map(task => task._id === action.payload._id ? action.payload : task)
                 }
         case TASK_CURRENT:
                 return {

@@ -12,7 +12,7 @@ const Task = ({task}) => {
 ////Obteniendo context en el componente
 const tasksContext = useContext(taskContext);
 //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
-const { deleteTask, getTasks, changeStateTask, selecTaskCurrent} = tasksContext;
+const { deleteTask, getTasks, updateTask, selecTaskCurrent} = tasksContext;
 
 
 //Destructuring del state projselected
@@ -32,7 +32,7 @@ const changeState = task =>{
         task.state = true;
     }
 
-    changeStateTask(task);
+    updateTask(task);
 }
 
 //Obteniendo tarea a editar
