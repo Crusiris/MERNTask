@@ -13,7 +13,6 @@ export const PROJECT_ERROR = 'PROJECT_ERROR';
 export const ADD_TASK = 'ADD_TASKS';
 export const ERROR_TAREAFORM = 'ERROR_TAREAFORM';
 export const DELETE_TASK = 'DELETE_TASK';
-export const STATE_TASK = 'STATE_TASK';
 export const TASK_CURRENT = 'TASK_CURRENT';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLEAN_TASK = 'CLEAN_TASK';

@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';//importando useReduce
 import TaskContext from './taskContext'; //importando task context
 import taskReducer from './taskReducer'; //importando reducer
 import clientAxios from '../../config/axios';
-import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM, DELETE_TASK, STATE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK } from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM, DELETE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK } from '../../types'; //importando type
 
 //Creando el provider
 

@@ -12,7 +12,7 @@ const Task = ({task}) => {
 ////Obteniendo context en el componente
 const tasksContext = useContext(taskContext);
 //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
-const { deleteTask, getTasks, updateTask, selecTaskCurrent} = tasksContext;
+const { deleteTask, updateTask, selecTaskCurrent} = tasksContext;
 
 
 //Destructuring del state projselected
