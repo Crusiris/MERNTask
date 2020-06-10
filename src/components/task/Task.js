@@ -20,8 +20,8 @@ const [ projectCurrent ] = projselected;
 
 //Funcion eliminar tarea
 const onClickDelete = id =>{
-    deleteTask(id);
-    getTasks(projectCurrent.id);
+    deleteTask(id, projectCurrent._id);
+   // getTasks(projectCurrent.id);
 }
 
 //Cambiar estado de tarea
@@ -77,7 +77,7 @@ const selectTask = task => {
                 <button
                 type="button"
                 className="btn btn-secundario"
-                onClick={ () => onClickDelete(task.id) }
+                onClick={ () => onClickDelete(task._id) }
                 >Eliminar</button>
             </div>
 
