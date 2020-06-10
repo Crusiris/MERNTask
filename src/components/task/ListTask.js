@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
@@ -23,7 +23,7 @@ const ListTask = () => {
     const [ projectCurrent ] = projselected;
 
     const onClickProjectDelete = () => {
-        deleteproject(projectCurrent._id)
+        deleteproject(projectCurrent._id);
     }
 
     return ( 
@@ -32,21 +32,21 @@ const ListTask = () => {
 
             <ul className="listado-tareas">
 
-                   {tasksProject.length === 0
+            {tasksProject.length === 0
 
-                        ?   (<li className="tarea"> <p> No hay tareas </p></li>)
-                    
-                        :  
-                        <TransitionGroup>
-                            {tasksProject.map(task =>(
-                                <CSSTransition key={task.id} timeout={200} className="tarea">
-                                    <Task
-                                        task={task}
-                                    />
-                                </CSSTransition>
-                                ))}
-                        </TransitionGroup>
-                    }
+            ?   (<li className="tarea"> <p> No hay tareas </p></li>)
+
+            :  
+                <TransitionGroup>
+                    {tasksProject.map(task =>(
+                        <CSSTransition key={task['_id']} timeout={200} className="tarea">
+                            <Task
+                                task={task}
+                            />
+                        </CSSTransition>
+                        ))}
+                </TransitionGroup>
+            }
                    
             </ul>
             <button

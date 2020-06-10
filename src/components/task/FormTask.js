@@ -59,19 +59,17 @@ const FormTask = () => {
         if (taskselect === null){
 
           //agregar la nueva tarea
-            task.projectId = projectCurrent.id;
-            task.state=false;
+            task.projectcreate = projectCurrent._id; //Añadiendo id del proyecto a la tarea, para relacionar
             addTask(task);
 
         }else{
             updateTask(task)
-
             //Eliminamos la tarea seleccionada
             cleanTask();
         }
 
-        //Obtener y filtrar las tareas del proyecto actual
-        getTasks(projectCurrent.id);
+        //Obtener y filtrar las tareas del proyecto actual,pasando el id del proyecto seleccionado
+       getTasks(projectCurrent._id);
         //reiniciar el form
         saveTask({
             name:''
