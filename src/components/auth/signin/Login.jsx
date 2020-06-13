@@ -124,7 +124,7 @@ const Login = (props) => {
                         color="primary"
                         className={classes.submit}
                     >Sign In </Button>
-                    <Grid container>
+                    <Grid container justify="flex-end">
                         <Grid item>
                             <Link to={'/nueva-cuenta'} variant="body2">
                                 {"Don't have an account? Sign Up"}

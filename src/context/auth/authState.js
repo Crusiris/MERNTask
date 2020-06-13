@@ -70,7 +70,6 @@ const AuthState = props => {
 
     //INICIO DE SESION 
     const logIn = async data =>{
-        console.log(data)
         try {
             //Peticion post al ENDPOIND
             const res = await clientAxios.post('/api/auth', data);
