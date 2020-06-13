@@ -37,7 +37,7 @@ const AuthState = props => {
 
             const alertmsg = {
                 msg:error.response.data.msg,
-                category:'alerta-error'
+                category:'error'
             }
             dispatch({
                 type: SINGIN_FAILURE,
@@ -70,6 +70,7 @@ const AuthState = props => {
 
     //INICIO DE SESION 
     const logIn = async data =>{
+        console.log(data)
         try {
             //Peticion post al ENDPOIND
             const res = await clientAxios.post('/api/auth', data);
@@ -85,7 +86,7 @@ const AuthState = props => {
            // console.log(error.response.data.msg);
             const alertmsg = {
                msg:error.response.data.msg,
-                category:'alerta-error'
+               category:'error'
             }
             dispatch({
                 type: LOGIN_FAILURE,

@@ -2,8 +2,25 @@ import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/auth/authContext';//Importando Context
 import ValidationContext from '../../../context/validation/validationContext';//Importando Context
- 
+import Copyright from '../../copyright/Copyright';//Componente
+import Alerta from '../../alert/Alerta';
+//Material UI
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+import useStyles from './style';// Style imports
+
 const Login = (props) => {
+    const classes = useStyles();
 
     const validationContext = useContext(ValidationContext);//Extrayendo context usando USECONTEXT()
     const { alertmsg, showMsjAlert } = validationContext; //Extrayendo funciones y state del context
@@ -40,12 +57,13 @@ const Login = (props) => {
         })
     }
 
+    //Funcion
     const onSubmit = e =>{
         e.preventDefault();
 
         //Validando que no existan campos vacios
         if(email.trim() === '' || password.trim() === ''){
-            showMsjAlert('Todos los campos son obligatorios','alerta-error');
+            showMsjAlert('Todos los campos son obligatorios', 'error');
             return;
         }
         
@@ -54,53 +72,72 @@ const Login = (props) => {
     }
 
     return ( 
-        <div className="form-usuario">
-             {alertmsg ? (<div className={`alerta ${alertmsg.category}`}> {alertmsg.msg} </div>) :null}
-            <div className="contenedor-form sombra-dark" >
-                    <h1>Iniciar sesion</h1>
 
-                    <form
-                    onSubmit={onSubmit}
-                    >
-                        <div className="campo-form">
-                            <label htmlFor="email">Email</label>
-                            <input 
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={email}
-                                placeholder="Tu Email"
-                                onChange={onChangeLogin}
-                                />
-                        </div>
+        <Container component="main" maxWidth="xs">
 
-                        <div className="campo-form">
-                            <label htmlFor="Password">Password</label>
-                            <input 
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                placeholder="Tu Password"
-                                onChange={onChangeLogin}
-                                
-                                />
-                        </div>
+            <CssBaseline />
 
-                        <div className="campo-form">
-                            <input
-                            type="submit" className="btn btn-primario btn-block"
-                            value="Iniciar Sesion"
-                            />
-                        </div>
-                    </form>
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
 
-                    <Link to={'/nueva-cuenta'} className="enlace-cuenta">
-                        Obtener Cuenta
-                    </Link>
+                <Typography component="h1" variant="h5">
+                    Sign in
+                </Typography>
+                <form className={classes.form} noValidate onSubmit={onSubmit} >
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        value={email}
+                        onChange={onChangeLogin}
+                        type="email"
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={onChangeLogin}
+                        autoComplete="current-password"
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >Sign In </Button>
+                    <Grid container>
+                        <Grid item>
+                            <Link to={'/nueva-cuenta'} variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </form>
             </div>
-
-        </div>
+            <Box mt={8}>
+                <Copyright />
+            </Box>
+            {alertmsg ? <Alerta  message={alertmsg.msg} type={alertmsg.category} autoclose={2000}/> :null}
+     </Container>
      );
 }
  

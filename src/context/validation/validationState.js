@@ -13,11 +13,14 @@ const ValidationState = props =>{
     const [ state, dispatch ]= useReducer(validationReducer, initialState)
 
     //Funciones
-    const showMsjAlert =(msg)=>{
+    const showMsjAlert = ( msg, category )=>{
     
         dispatch({
             type:SHOW_MSG,
-            payload:msg
+            payload:{
+                msg,
+                category
+            }
         });
 
         setTimeout(()=>{

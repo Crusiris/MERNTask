@@ -69,17 +69,17 @@ const NewCta = (props) => {
 
         //Validando que no existan campos vacios
         if(firstName.trim() === '' || email.trim() === '' || password.trim() === '' || confirmpassword.trim() === ''){
-            showMsjAlert('Todos los campos son obligatorios');
+            showMsjAlert('Todos los campos son obligatorios', 'error');
             return;
         }
         //Validando que el password sea de minimo 6 caracteres
         if(password.length < 6 ){
-            showMsjAlert('El Password debe ser de 6 caracteres');
+            showMsjAlert('El Password debe ser de 6 caracteres', 'error');
             return;
         }
         //Validando que los password son iguales
         if(password !== confirmpassword ){
-            showMsjAlert('Los Passwords no coinciden');
+            showMsjAlert('Los Passwords no coinciden', 'error');
             return;
         }
         //Funcion que inicia sesion
@@ -208,83 +208,8 @@ const NewCta = (props) => {
             <Box mt={5}>
                 <Copyright />
             </Box>
-            {alertmsg ? <Alerta  message={alertmsg} type="error" autoclose={2000}/> :null}
+            {alertmsg ? <Alerta  message={alertmsg.msg} type={alertmsg.category} autoclose={2000}/> :null}
             </Container>
-
-
-
-
-
-        // <div className="form-usuario">
-        //     {alertmsg ? (<div className={`alerta ${alertmsg.category}`}> {alertmsg.msg} </div>) :null}
-        //     <div className="contenedor-form sombra-dark" >
-        //             <h1>Obtener Cuenta</h1>
-
-        //             <form
-        //             onSubmit={signIn}
-        //             >
-        //                 <div className="campo-form">
-        //                     <label htmlFor="name">Nombre</label>
-        //                     <input 
-        //                         type="text"
-        //                         id="name"
-        //                         name="name"
-        //                         value={name}
-        //                         placeholder="Tu Nombre"
-        //                         onChange={onChangeLogin}
-        //                         />
-        //                 </div>
-
-        //                 <div className="campo-form">
-        //                     <label htmlFor="email">Email</label>
-        //                     <input 
-        //                         type="email"
-        //                         id="email"
-        //                         name="email"
-        //                         value={email}
-        //                         placeholder="Tu Email"
-        //                         onChange={onChangeLogin}
-        //                         />
-        //                 </div>
-
-        //                 <div className="campo-form">
-        //                     <label htmlFor="Password">Password</label>
-        //                     <input 
-        //                         type="password"
-        //                         id="password"
-        //                         name="password"
-        //                         value={password}
-        //                         placeholder="Tu Password"
-        //                         onChange={onChangeLogin}
-        //                         />
-        //                 </div>
-
-        //                 <div className="campo-form">
-        //                     <label htmlFor="Confirmar Password">Confirmar Password</label>
-        //                     <input 
-        //                         type="password"
-        //                         id="confirm"
-        //                         name="confirm"
-        //                         value={confirm}
-        //                         placeholder="Repite Tu Password"
-        //                         onChange={onChangeLogin}
-        //                         />
-        //                 </div>
-
-        //                 <div className="campo-form">
-        //                     <input
-        //                     type="submit" className="btn btn-primario btn-block"
-        //                     value="Registrarme"
-        //                     />
-        //                 </div>
-        //             </form>
-
-        //             <Link to={'/'} className="enlace-cuenta">
-        //                 Ya tengo cuenta
-        //             </Link>
-        //     </div>
-
-        // </div>
      );
 }
  
