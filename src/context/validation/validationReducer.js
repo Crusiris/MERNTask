@@ -1,4 +1,4 @@
-import {SHOW_MSG, HIDE_MSG} from '../../types'; //importando types
+import { SHOW_MSG, HIDE_MSG } from '../../types'; //importando types
 
 export default (state, action) => {
 
@@ -6,12 +6,12 @@ export default (state, action) => {
 
         case SHOW_MSG:
             return {
-                alertmsg:action.payload
+                alertmsg: action.payload
             }
-        
+
         case HIDE_MSG:
             return {
-                alertmsg:null    
+                alertmsg: null
             }
 
         default:

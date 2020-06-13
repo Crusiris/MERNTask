@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import AuthContext from '../../context/auth/authContext';//Importando Context
-import ValidationContext from '../../context/validation/validationContext';//Importando Context
+import AuthContext from '../../../context/auth/authContext';//Importando Context
+import ValidationContext from '../../../context/validation/validationContext';//Importando Context
  
 const Login = (props) => {
 
