@@ -136,7 +136,7 @@ const Login = (props) => {
             <Box mt={8}>
                 <Copyright />
             </Box>
-            {alertmsg ? <Alerta  message={alertmsg.msg} type={alertmsg.category} autoclose={2000}/> :null}
+            {alertmsg ? <Alerta  message={alertmsg.msg} type={alertmsg.category} autoclose={3000}/> :null}
      </Container>
      );
 }

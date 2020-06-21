@@ -7,10 +7,6 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',

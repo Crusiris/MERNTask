@@ -4,29 +4,57 @@ import Bar  from '../layout/Bar/Bar';
 import FormTask  from '../task/FormTask';
 import ListTask  from '../task/ListTask';
 import AuthContext from '../../context/auth/authContext';
+import useStyles from './style';
+import { Hidden } from '@material-ui/core';
 
 const Projects = () => {
+    const classes = useStyles()
+    const [toshow, setToshow] = React.useState(false);
     //Extraer la context
     const authContext = useContext(AuthContext);
     const { userAuth } = authContext;
+
+
 
     useEffect(() => {
         userAuth();
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return ( 
-        <div className="contenedor-app">
-            <Sidebar/>
+    const handleDrawerToggle = () => {
+        setToshow(!toshow);
+      };
 
-            <div className="seccion-principal">
-                <Bar/>
-                <main>
+    return ( 
+        
+        <div className={classes.root}>
+            <Bar handleDrawerToggle={handleDrawerToggle}/>
+            
+            <Hidden xsDown>
+                 <Sidebar
+                 variant="permanent"
+                 open={true}
+                 />
+            </Hidden>
+
+            <Hidden smUp>
+                 <Sidebar
+                 variant="temporary"
+                 open={toshow}
+                 onClose={handleDrawerToggle}
+                 />
+            </Hidden>
+            
+
+            <div>
+                <div className={classes.toolbar}></div>
+                
+                <main className={classes.content}>
                     <FormTask/>
                     <div className="contenedor-tareas">
                         <ListTask/>
                     </div>
-                    
+                    <button >abrir</button>
                 </main>
             </div>
         </div>

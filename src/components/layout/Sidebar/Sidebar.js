@@ -1,21 +1,38 @@
 import React from 'react';
 import NewProject from '../../projects/NewProject';
 import ListProject from '../../projects/ListProject';
+import useStyles from './style';
 
-const Sidebar = () => {
+//MATERIA UI
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+
+const Sidebar = (props) => {
+    const classes = useStyles();
+
+    
+    
     return ( 
-        <aside>
-            <h1>MERN <span>Task</span></h1>
-                    <NewProject/>
-            <div className="proyectos">
+        <Drawer
+            className={classes.drawer}
+            classes={{
+            paper: classes.drawerPaper,
+            }}
+            anchor="left"
+            variant={props.variant}
+            open={props.open}
+            onClose={props.onClose ? props.onClose : null}
+        >
+            <div className={classes.toolbar} />
+            <Divider />
 
-                <h2>Tus Proyectos</h2>
+              <NewProject/>
 
-                <ListProject/>
+            <Divider />
 
-            </div>
-        </aside>
+            <ListProject/>
 
+        </Drawer>
      );
 }
  

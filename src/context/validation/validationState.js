@@ -27,7 +27,7 @@ const ValidationState = props =>{
             dispatch({
                 type:HIDE_MSG
             })
-        },2000);
+        },3000);
     }
 
 
