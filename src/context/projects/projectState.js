@@ -5,7 +5,7 @@ import React, { useReducer } from 'react';
 import ProjectContext from './projectContext'; //importando context
 import projectReducer from './projectReducer'; //importando reducer
 import clientAxios from '../../config/axios'; //Importando cliente axios
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS,PROJECT_ERROR, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT} from '../../types';//importando types
+import { FORM_PROJECT, HIDE_FORM_PROJECT, GET_PROJECTS, ADD_PROJECTS,PROJECT_ERROR, ERROR_MESSAGE, PROJECT_CURRENT, DELETE_PROJECT} from '../../types';//importando types
 
 
 
@@ -32,6 +32,13 @@ const ProjectState = props => {
         dispatch({
             type: FORM_PROJECT
         })    
+    }
+
+    //Ocultando formulario de agregar proyecto
+    const hideFormAddProject = ()=>{
+        dispatch({
+            type:HIDE_FORM_PROJECT
+        })
     }
     //Obtener proyecto
     const getProject = async () =>{
@@ -135,6 +142,7 @@ const ProjectState = props => {
             projselected: state.projselected,
             message:state.message,
             showFormAddProject,
+            hideFormAddProject,
             getProject,
             addProject,
             showErrorMsj,

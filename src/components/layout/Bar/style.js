@@ -14,10 +14,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     appBar: {
-        [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${240}px)`,
-            marginLeft: 240,
-        }
+        // [theme.breakpoints.up('sm')]: {
+        //     width: `calc(100% - ${240}px)`,
+        //     marginLeft: 240,
+        // },
+        zIndex: theme.zIndex.drawer + 1,
     },
 
 }));

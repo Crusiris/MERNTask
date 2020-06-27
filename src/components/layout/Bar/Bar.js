@@ -38,7 +38,7 @@ const Bar = (props) => {
 
     return ( 
 
-        <AppBar className={classes.appBar}>
+        <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} onClick={()=> props.handleDrawerToggle()} color="inherit" aria-label="menu">
                     <MenuIcon />

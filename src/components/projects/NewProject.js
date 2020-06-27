@@ -1,7 +1,11 @@
 import React, { Fragment, useState, useContext } from 'react';
 import projectContext from '../../context/projects/projectContext';
+import FormProjec from './FormProject';
+import { Button, Typography, List, ListItem, ListSubheader, Divider } from '@material-ui/core';
+import useStyles from './style';//Estilos del componente
 
 const NewProject = () => {
+    const classes = useStyles();
 
     //obteniendo el  context con useContext
     const projectsContext = useContext(projectContext);
@@ -53,40 +57,56 @@ const NewProject = () => {
 
 
     return ( 
-        <Fragment>
+        <div className={classes.root}>
+            <List
+                component="nav"
+                aria-label="main mailbox folders"
+                subheader={
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Projects
+                     </ListSubheader>
+                }>
 
-            <button 
-                type="button" 
-                className="btn btn-block btn-primario" 
-                onClick={onClickForm}
-            >
-                Nuevo proyecto
-            </button>
+                <FormProjec/>
 
-            { form ?
-                    (
-                        <form className="formulario-nuevo-proyecto"
-                            onSubmit={onSubmitProject}
-                            >
-                            <input 
-                                type="text"
-                                className="input-text"
-                                placeholder="Nombre Proyecto"
-                                value={name}
-                                name="name"
-                                onChange={onChangeProjects}
-                            />
+    
 
-                            <input 
-                                type="submit"
-                                className="btn btn-primario btn-block"
-                                value="Agregar Proyecto"
-                            />
-                        </form>
-                    ) : null }
+            </List>
+            <Divider />
+        </div >
+        // <Fragment>
+        //     <button 
+        //         type="button" 
+        //         className="btn btn-block btn-primario" 
+        //         onClick={onClickForm}
+        //     >
+        //         Nuevo proyecto
+        //     </button>
 
-                    {errorform ?<p className="mensaje error"> El nombre del proyecto es obligatorio </p> : null}
-        </Fragment>
+        //     { form ?
+        //             (
+        //                 <form className="formulario-nuevo-proyecto"
+        //                     onSubmit={onSubmitProject}
+        //                     >
+        //                     <input 
+        //                         type="text"
+        //                         className="input-text"
+        //                         placeholder="Nombre Proyecto"
+        //                         value={name}
+        //                         name="name"
+        //                         onChange={onChangeProjects}
+        //                     />
+
+        //                     <input 
+        //                         type="submit"
+        //                         className="btn btn-primario btn-block"
+        //                         value="Agregar Proyecto"
+        //                     />
+        //                 </form>
+        //             ) : null }
+
+        //             {errorform ?<p className="mensaje error"> El nombre del proyecto es obligatorio </p> : null}
+        // </Fragment>
      );
 }
  

@@ -1,6 +1,7 @@
 //Creando y exportando los types
 ////////////////PROYECTOS////////////////
 export const FORM_PROJECT = 'FORM_PROJECT';
+export const HIDE_FORM_PROJECT = 'HIDE_FORM_PROJECT';
 export const GET_PROJECTS = 'GET_PROJECTS';
 export const ADD_PROJECTS = 'ADD_PROJECTS'
 export const ERROR_MESSAGE = 'ERROR_MESSAGE';
