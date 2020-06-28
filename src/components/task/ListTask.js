@@ -1,8 +1,7 @@
-import React, { Fragment, useContext } from 'react';
+import React, {useContext } from 'react';
 import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useStyles from './style';
 
 //Material UI imports
@@ -31,57 +30,20 @@ const ListTask = ({handleDrawerToggle}) => {
     }
 
     return ( 
-
-
         <Container className={classes.container}>
+          <Typography className={classes.underline}>Tasks</Typography>
 
-        <Typography className={classes.underline}>Tasks</Typography>
+          <br />
+            {tasksProject &&
+                tasksProject.map((task, i) => (
 
-        <br />
+                    <Task key={task._id} task={task} handleDrawerToggle={handleDrawerToggle}/>
 
+                ))
 
-        {tasksProject &&
-            tasksProject.map((task, i) => (
-
-                <Task key={task._id} task={task} handleDrawerToggle={handleDrawerToggle}/>
-
-            ))
-
-        }
-
-
-    </Container>
-
-
-        // <Fragment>  
-        //     <h2>Proyecto: {projectCurrent.name}</h2>
-
-        //     <ul className="listado-tareas">
-
-        //     {tasksProject.length === 0
-
-        //     ?   (<li className="tarea"> <p> No hay tareas </p></li>)
-
-        //     :  
-        //         <TransitionGroup>
-        //             {tasksProject.map(task =>(
-        //                 <CSSTransition key={task['_id']} timeout={200} className="tarea">
-        //                     <Task
-        //                         task={task}
-        //                     />
-        //                 </CSSTransition>
-        //                 ))}
-        //         </TransitionGroup>
-        //     }
-                   
-        //     </ul>
-        //     <button
-        //     type="button"
-        //     className="btn btn-eliminar"
-        //     onClick={onClickProjectDelete}
-        //     >Eliminar proyecto &times;</button>
-        // </Fragment>
-     );
+            }
+        </Container>
+    );
 }
  
 export default ListTask;

@@ -1,6 +1,6 @@
 import React,{ useContext, useEffect } from 'react';
 import Sidebar  from '../layout/Sidebar/Sidebar';
-import Bar  from '../layout/Bar/Bar';
+import Bar  from '../layout/bar/Navbar';
 import FormTask  from '../task/FormTask';
 import ListTask  from '../task/ListTask';
 import AuthContext from '../../context/auth/authContext';

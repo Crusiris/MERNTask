@@ -3,7 +3,6 @@ import Project from './Project';
 import ProjectContext from '../../context/projects/projectContext';
 //Importando imagen
 import add from '../img/add.svg'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ValidationContext from '../../context/validation/validationContext';
 //Material UI imports
 import {ListItem,Grid,Typography, Grow } from '@material-ui/core';
@@ -63,20 +62,7 @@ const ListProject = ({handleDrawerToggle}) => {
 
         }
     </Fragment>
-
-        // <ul className="listado-proyectos">
-        //     {alertmsg ? (<div className={`alerta ${alertmsg.category}`}> {alertmsg.msg} </div>) :null}
-        //     <TransitionGroup>
-        //         {projects.map(project=>(
-        //                <CSSTransition key={project._id} timeout={200} className="tarea">
-        //                     <Project
-        //                     project={project}
-        //                     />
-        //                </CSSTransition>
-        //         ))}
-        //     </TransitionGroup>
-        // </ul>
-     );
+  );
 }
  
 export default ListProject;

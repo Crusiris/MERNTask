@@ -1,7 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react';
 import projectContext from '../../context/projects/projectContext';
-import useStyles from './style';//Estilos del componente
-
 // @Material-UI imports
 import {ListItem,Button,FormControl,InputAdornment,InputLabel, OutlinedInput, Container, FormHelperText, Grid
 } from '@material-ui/core';
@@ -9,8 +7,6 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
 const FormProject = () => {
-    const classes = useStyles();
-
     //obteniendo el  context con useContext
     const projectsContext = useContext(projectContext);
     //Destructurin del context
@@ -74,7 +70,7 @@ const FormProject = () => {
            <ListItem>
              <Grid container direction="column" justify="center" spacing={1}>
                 <Grid item>
-                    <form className="formulario-nuevo-proyecto" onSubmit={onSubmitProject}>
+                    <form onSubmit={onSubmitProject}>
                         <FormControl fullWidth variant="outlined" error={errorform} size="small">
                         <InputLabel htmlFor="outlined-adornment-password">Project's name</InputLabel>
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import {Snackbar, SnackbarContent} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
