@@ -1,8 +1,14 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { Fragment, useContext, useState, useEffect} from 'react';
 import projectContext  from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
+// @Material-UI imports
+import { Grid, Button, FormControl, InputAdornment, InputLabel, OutlinedInput, Container, FormHelperText } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
+import useStyles from './style';
 
 const FormTask = () => {
+    const classes = useStyles();
     //Guardando el context en una constante
     const projectsContext = useContext(projectContext );
 
@@ -11,7 +17,7 @@ const FormTask = () => {
 
      //Destructurin del context para obtener el state de projecSelecte 
      const tasksContext = useContext(taskContext);
-     const { taskselect, addTask, errortask,  validateFormTask, getTasks, updateTask, cleanTask } = tasksContext;
+     const { hideFormTask, showFormTask, taskselect, addTask, errortask,  validateFormTask, getTasks, updateTask, cleanTask, formTask } = tasksContext;
 
      useEffect(()=>{
          if(taskselect !== null){
@@ -27,7 +33,8 @@ const FormTask = () => {
     //State del formulario
     const [ task, saveTask ] = useState({
         name:'',
-    })
+    });
+    const [helper, setHelper] = useState('');
 
     //extraer el nombre de tarea
     const { name } = task
@@ -43,7 +50,21 @@ const FormTask = () => {
         saveTask({
             ...task,
             [e.target.name]:e.target.value
-        }) 
+        });
+        
+        setHelper('');
+    }
+
+    //Mostrar formulario de task
+    const handleShowForm = () => {
+        showFormTask();
+    }
+
+    //Ocultar formulario de task
+    const handleCancel = () => {
+        saveTask({ name: '' })
+        setHelper('');
+        hideFormTask();
     }
 
     const onSubmitTask = e =>{
@@ -78,30 +99,90 @@ const FormTask = () => {
     }
 
     return ( 
-        <div className="formulario">
-            <form
-              onSubmit={onSubmitTask}
-            >
-                <div className="contenedor-input">
-                    <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Nombre tarea..."
-                    name="name"
-                    value={name}
-                    onChange={handleChange}
-                    />
-                </div>
-                <div className="contenedor-input">
-                    <input 
-                    type="submit"
-                    className="btn btn-primario btn-submit btn-block"
-                    value={taskselect ? 'Editar Tarea ': 'Agregar Tarea'}
-                    />
-                </div>
-            </form>
-            {errortask ? <p className="mensaje error"> El nombre de la tarea es obligatorio </p>:null}
-        </div>
+
+        <Fragment>
+            <Container className={classes.container}>
+            {formTask ?
+               <Grid container justify="center" direction="column" spacing={1} >
+                    <Grid item>
+                            <form onSubmit={onSubmitTask}>
+                                <FormControl fullWidth variant="outlined" error={errortask}>
+                                    <InputLabel htmlFor="outlined-adornment-password">Task's name</InputLabel>
+                                    <OutlinedInput
+                                        size="small"
+                                        autoFocus
+                                        multiline
+                                        rowsMax={4}
+                                        id="name-of-the-task"
+                                        type='text'
+                                        value={name}
+                                        name="name"
+                                        onChange={handleChange}
+                                        autoComplete="off"
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <Button type="submit">
+                                                    Add
+                                                    </Button>
+
+                                            </InputAdornment>
+                                        }
+                                        labelWidth={90}
+                                    />
+                                    <FormHelperText>{helper}</FormHelperText>
+                                </FormControl>
+                            </form>
+                    </Grid> 
+                    <Grid item>
+                            <Grid container justify="flex-end">
+
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    startIcon={<CloseIcon />}
+                                    onClick={handleCancel}
+                                >cancel </Button>
+
+                            </Grid>
+                    </Grid>
+                </Grid>
+                :
+                <Grid>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        startIcon={<AddIcon />}
+                        onClick={handleShowForm}
+                        >New task</Button>
+                </Grid>
+                }
+            </Container>
+        </Fragment>
+
+        // <div className="formulario">
+        //     <form
+        //       onSubmit={onSubmitTask}
+        //     >
+        //         <div className="contenedor-input">
+        //             <input
+        //             type="text"
+        //             className="input-text"
+        //             placeholder="Nombre tarea..."
+        //             name="name"
+        //             value={name}
+        //             onChange={handleChange}
+        //             />
+        //         </div>
+        //         <div className="contenedor-input">
+        //             <input 
+        //             type="submit"
+        //             className="btn btn-primario btn-submit btn-block"
+        //             value={taskselect ? 'Editar Tarea ': 'Agregar Tarea'}
+        //             />
+        //         </div>
+        //     </form>
+        //     {errortask ? <p className="mensaje error"> El nombre de la tarea es obligatorio </p>:null}
+        // </div>
      );
 }
  

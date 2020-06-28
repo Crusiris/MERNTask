@@ -2,7 +2,8 @@ import React, { useReducer } from 'react';//importando useReduce
 import TaskContext from './taskContext'; //importando task context
 import taskReducer from './taskReducer'; //importando reducer
 import clientAxios from '../../config/axios';
-import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM, DELETE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK } from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK ,ERROR_TAREAFORM, DELETE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK,
+     SHOW_FORM_TASK, HIDE_FORM_TASK } from '../../types'; //importando type
 
 //Creando el provider
 
@@ -11,16 +12,27 @@ const TaskState = props =>{
      //Declarando un state inicial 
      const initialState = { 
         tasksProject:[],
+        formTask:false,
         errortask:false,
-        taskselect:null
-        
+        taskselect:null,  
       }
     
     //Dispath para ejecutar las acciones
     const [ state, dispatch ] = useReducer(taskReducer, initialState);
 
     //Funciones
-
+    //Mostrar formulario de tareas
+     const showFormTask = ()=>{
+        dispatch({
+            type:SHOW_FORM_TASK
+        });
+     }
+     //Ocultar formulario de tareas
+     const hideFormTask = ()=>{
+        dispatch({
+            type:HIDE_FORM_TASK
+        });
+     }
     //Obtener las tareas de un proyecto
     const getTasks = async projectcreate => {
         try {
@@ -113,8 +125,11 @@ const TaskState = props =>{
             tasksProject:state.tasksProject,
             errortask:state.errortask,
             taskselect:state.taskselect,
+            formTask:state.formTask,
             getTasks,
             addTask,
+            showFormTask,
+            hideFormTask,
             validateFormTask,
             deleteTask,
             selecTaskCurrent,

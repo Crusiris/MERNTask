@@ -12,6 +12,8 @@ export const PROJECT_ERROR = 'PROJECT_ERROR';
 
 ///////////////TAREAS//////////////////
 export const ADD_TASK = 'ADD_TASKS';
+export const SHOW_FORM_TASK = 'SHOW_FORM_TASK';
+export const HIDE_FORM_TASK = 'HIDE_FORM_TASK';
 export const ERROR_TAREAFORM = 'ERROR_TAREAFORM';
 export const DELETE_TASK = 'DELETE_TASK';
 export const TASK_CURRENT = 'TASK_CURRENT';

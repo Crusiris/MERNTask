@@ -1,4 +1,5 @@
-import { TASKS_PROJECT, ADD_TASK, ERROR_TAREAFORM, DELETE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK} from '../../types'; //importando type
+import { TASKS_PROJECT, ADD_TASK, ERROR_TAREAFORM, DELETE_TASK, TASK_CURRENT, UPDATE_TASK, CLEAN_TASK,
+    SHOW_FORM_TASK, HIDE_FORM_TASK} from '../../types'; //importando type
 
 export default (state, action) => {
     switch (action.type) {
@@ -6,6 +7,16 @@ export default (state, action) => {
             return {
                 ...state,
                 tasksProject:action.payload
+            }
+        case SHOW_FORM_TASK:
+            return{
+                ...state,
+                formTask:true
+            }
+        case HIDE_FORM_TASK:
+            return{
+                ...state,
+                formTask:false
             }
         case ADD_TASK:
             

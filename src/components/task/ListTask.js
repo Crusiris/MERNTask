@@ -3,9 +3,13 @@ import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import useStyles from './style';
 
-const ListTask = () => {
+//Material UI imports
+import { Container, Typography } from '@material-ui/core';
 
+const ListTask = ({handleDrawerToggle}) => {
+    const classes = useStyles();
     //Obteniendo context en el componente
     const projecstContext = useContext(projectContext);
 
@@ -27,34 +31,56 @@ const ListTask = () => {
     }
 
     return ( 
-        <Fragment>  
-            <h2>Proyecto: {projectCurrent.name}</h2>
 
-            <ul className="listado-tareas">
 
-            {tasksProject.length === 0
+        <Container className={classes.container}>
 
-            ?   (<li className="tarea"> <p> No hay tareas </p></li>)
+        <Typography className={classes.underline}>Tasks</Typography>
 
-            :  
-                <TransitionGroup>
-                    {tasksProject.map(task =>(
-                        <CSSTransition key={task['_id']} timeout={200} className="tarea">
-                            <Task
-                                task={task}
-                            />
-                        </CSSTransition>
-                        ))}
-                </TransitionGroup>
-            }
+        <br />
+
+
+        {tasksProject &&
+            tasksProject.map((task, i) => (
+
+                <Task key={task._id} task={task} handleDrawerToggle={handleDrawerToggle}/>
+
+            ))
+
+        }
+
+
+    </Container>
+
+
+        // <Fragment>  
+        //     <h2>Proyecto: {projectCurrent.name}</h2>
+
+        //     <ul className="listado-tareas">
+
+        //     {tasksProject.length === 0
+
+        //     ?   (<li className="tarea"> <p> No hay tareas </p></li>)
+
+        //     :  
+        //         <TransitionGroup>
+        //             {tasksProject.map(task =>(
+        //                 <CSSTransition key={task['_id']} timeout={200} className="tarea">
+        //                     <Task
+        //                         task={task}
+        //                     />
+        //                 </CSSTransition>
+        //                 ))}
+        //         </TransitionGroup>
+        //     }
                    
-            </ul>
-            <button
-            type="button"
-            className="btn btn-eliminar"
-            onClick={onClickProjectDelete}
-            >Eliminar proyecto &times;</button>
-        </Fragment>
+        //     </ul>
+        //     <button
+        //     type="button"
+        //     className="btn btn-eliminar"
+        //     onClick={onClickProjectDelete}
+        //     >Eliminar proyecto &times;</button>
+        // </Fragment>
      );
 }
  

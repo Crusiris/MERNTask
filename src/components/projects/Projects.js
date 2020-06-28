@@ -54,7 +54,7 @@ const Projects = () => {
                 <main className={classes.content}>
                     <FormTask/>
                     <div className="contenedor-tareas">
-                        <ListTask/>
+                        <ListTask handleDrawerToggle={handleDrawerToggle}/>
                     </div>
                     <button >abrir</button>
                 </main>
