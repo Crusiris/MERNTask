@@ -32,6 +32,7 @@ const Projects = () => {
             
             <Hidden xsDown>
                  <Sidebar
+                 handleDrawerToggle={handleDrawerToggle}
                  variant="permanent"
                  open={true}
                  />
@@ -39,6 +40,7 @@ const Projects = () => {
 
             <Hidden smUp>
                  <Sidebar
+                 handleDrawerToggle={handleDrawerToggle}
                  variant="temporary"
                  open={toshow}
                  onClose={handleDrawerToggle}

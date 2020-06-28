@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(3),
     },
+    img: {
+		width: '100%',
+		height: '100%'
+	}
 }));
 
 export default useStyles;

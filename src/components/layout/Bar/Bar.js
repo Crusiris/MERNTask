@@ -12,7 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const Bar = (props) => {
+const Bar = ({handleDrawerToggle}) => {
  const classes = useStyles();
  //Extraer la context
  const authContext = useContext(AuthContext);
@@ -40,7 +40,7 @@ const Bar = (props) => {
 
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} onClick={()=> props.handleDrawerToggle()} color="inherit" aria-label="menu">
+                <IconButton edge="start" className={classes.menuButton} onClick={()=> handleDrawerToggle()} color="inherit" aria-label="menu">
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>

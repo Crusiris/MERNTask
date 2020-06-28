@@ -7,11 +7,10 @@ import useStyles from './style';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 
-const Sidebar = (props) => {
+const Sidebar = ({variant, open, onClose, handleDrawerToggle}) => {
     const classes = useStyles();
 
-    
-    
+ 
     return ( 
         <Drawer
             className={classes.drawer}
@@ -19,9 +18,9 @@ const Sidebar = (props) => {
             paper: classes.drawerPaper,
             }}
             anchor="left"
-            variant={props.variant}
-            open={props.open}
-            onClose={props.onClose ? props.onClose : null}
+            variant={variant}
+            open={open}
+            onClose={onClose ? onClose : null}
         >
             <div className={classes.toolbar} />
             <Divider />
@@ -30,7 +29,7 @@ const Sidebar = (props) => {
 
             <Divider />
 
-            <ListProject/>
+            <ListProject handleDrawerToggle={handleDrawerToggle} />
 
         </Drawer>
      );
