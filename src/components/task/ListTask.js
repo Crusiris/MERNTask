@@ -19,9 +19,6 @@ const ListTask = ({handleDrawerToggle}) => {
     const tasksContext = useContext(TaskContext);
     const { tasksProject } = tasksContext;
 
-    //Condicion para cuando no hay ningun proyecto seleccionado
-  if(!projselected) return <h2>Selecciona un proyecto</h2>
-
     //Destructuring del state projselected
     const [ projectCurrent ] = projselected;
 

@@ -57,7 +57,7 @@ const changeState = task =>{
     }else{
         task.state = true;
     }
-
+   
     updateTask(task);
 }
 
@@ -84,14 +84,14 @@ const selectTask = task => {
                                 <Grid item xl={2} lg={3} md={4} sm={12} xs={12}>
                                     <Grid container direction="row" justify="flex-end" alignItems="center" spacing={1}>
                                         {task.state ?
-                                            <Button color="primary" className={classes.btn} onClick={changeState}>Completed</Button>
+                                            <Button color="primary" className={classes.btn} onClick={()=> changeState(task)}>Completed</Button>
                                             :
-                                            <Button color="secondary" className={classes.btn} onClick={changeState}>Incomplete</Button>
+                                            <Button color="secondary" className={classes.btn} onClick={()=> changeState(task)} >Incomplete</Button>
                                         }
                                         <IconButton aria-label="delete" size="small" className={classes.btn} onClick={handleEdit}>
                                             <EditIcon fontSize="small" />
                                         </IconButton>
-                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={onClickDelete}>
+                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={onClickDelete} >
                                             <DeleteIcon fontSize="small" />
                                         </IconButton>
                                     </Grid>
