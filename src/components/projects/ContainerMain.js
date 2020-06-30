@@ -19,6 +19,8 @@ const ContainerMain = ({handleDrawerToggle}) => {
             <Grid container>
                     { projselected ?
                         <Fragment>
+                          <Typography variant="h6" className={classes.typo}>{projselected[0].name}</Typography>
+                          <Divider variant="middle" />
                             <Grid item md={12}>
                               <FormTask/>
                             </Grid>

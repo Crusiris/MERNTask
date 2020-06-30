@@ -15,7 +15,10 @@ const useStyles = makeStyles((theme) => ({
     img: {
 		width: '100%',
 		height: 'auto'
-	}
+    },
+    typo: {
+        color: 'rgba(0, 0, 0, 0.54)'
+    }
 }));
 
 export default useStyles;
