@@ -158,31 +158,6 @@ const FormTask = () => {
                 }
             </Container>
         </Fragment>
-
-        // <div className="formulario">
-        //     <form
-        //       onSubmit={onSubmitTask}
-        //     >
-        //         <div className="contenedor-input">
-        //             <input
-        //             type="text"
-        //             className="input-text"
-        //             placeholder="Nombre tarea..."
-        //             name="name"
-        //             value={name}
-        //             onChange={handleChange}
-        //             />
-        //         </div>
-        //         <div className="contenedor-input">
-        //             <input 
-        //             type="submit"
-        //             className="btn btn-primario btn-submit btn-block"
-        //             value={taskselect ? 'Editar Tarea ': 'Agregar Tarea'}
-        //             />
-        //         </div>
-        //     </form>
-        //     {errortask ? <p className="mensaje error"> El nombre de la tarea es obligatorio </p>:null}
-        // </div>
      );
 }
  

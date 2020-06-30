@@ -1,14 +1,14 @@
 import React,{ useContext, useEffect } from 'react';
 import Sidebar  from '../layout/Sidebar/Sidebar';
 import Bar  from '../layout/bar/Navbar';
-import FormTask  from '../task/FormTask';
-import ListTask  from '../task/ListTask';
+import ContainerMain from './ContainerMain';
 import AuthContext from '../../context/auth/authContext';
 import useStyles from './style';
+//Material UI
 import { Hidden } from '@material-ui/core';
 
 const Projects = () => {
-    const classes = useStyles()
+    const classes = useStyles();
     const [toshow, setToshow] = React.useState(false);
     //Extraer la context
     const authContext = useContext(AuthContext);
@@ -28,6 +28,7 @@ const Projects = () => {
     return ( 
         
         <div className={classes.root}>
+        
             <Bar handleDrawerToggle={handleDrawerToggle}/>
             
             <Hidden xsDown>
@@ -47,18 +48,13 @@ const Projects = () => {
                  />
             </Hidden>
             
+            <div className={classes.content}>
+              <div className={classes.toolbar}></div>
 
-            <div>
-                <div className={classes.toolbar}></div>
-                
-                <main className={classes.content}>
-                    <FormTask/>
-                    <div className="contenedor-tareas">
-                        <ListTask handleDrawerToggle={handleDrawerToggle}/>
-                    </div>
-                    <button >abrir</button>
-                </main>
+                <ContainerMain handleDrawerToggle={handleDrawerToggle}/>
+            
             </div>
+            
         </div>
        
     );

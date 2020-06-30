@@ -70,12 +70,9 @@ const selectTask = task => {
 
     return ( 
 
-
         <Fragment>
             
                 {/* <EditTask taskToEdit={task} setEdit={setEdit} /> */}
-                
-
                 <Grid item >
                     <Grow in={animation} timeout={{ enter: 1000, exit: 200 }} unmountOnExit>
                         <Paper className={classes.paper} elevation={elevation} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -104,9 +101,7 @@ const selectTask = task => {
                     </Grow>
 
                 </Grid>
-
-
-            
+    
         </Fragment>
 
 
