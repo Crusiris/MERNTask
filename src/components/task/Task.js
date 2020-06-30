@@ -58,7 +58,7 @@ const changeState = task =>{
         task.state = true;
     }
    
-    updateTask(task);
+   updateTask(task);
 }
 
 //Obteniendo tarea a editar
@@ -88,10 +88,10 @@ const selectTask = task => {
                                             :
                                             <Button color="secondary" className={classes.btn} onClick={()=> changeState(task)} >Incomplete</Button>
                                         }
-                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={handleEdit}>
+                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={()=> selectTask(task)}>
                                             <EditIcon fontSize="small" />
                                         </IconButton>
-                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={onClickDelete} >
+                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={()=>onClickDelete(task._id)} >
                                             <DeleteIcon fontSize="small" />
                                         </IconButton>
                                     </Grid>
