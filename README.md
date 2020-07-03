@@ -1,6 +1,6 @@
 ## C-Task 
 
-Proyecto web sencillo, que se conecta a la simulacion de un API REST creada con JSON-SERVER y traves del protocolo HTTP, para ser mas especificos, GET, POST, PUT y DELETE se maneja la data. ademas el manejo de los estados fue a traves de REDUX, mientras que los estilos se crearon utilizando los styles components de MATERIAL UI.
+Proyecto web que permite que un usuario se Registra e inicie sesion, ademas podra manejar sus proyectos y organizar tareas de dichos proyectos, El FrontEnd de esta aplicación fue creada con React, Reducer, Hooks, State, Material UI, ademas cuenta con su propio BackEnd desarrollado con Node js, Mongodb y Express.
 
 ### Layout One
 ![Imagen crud 1](https://github.com/Crusiris/MERNTaskCliente/blob/master/public/img/screen.jpg "Imagen a de la aplicacion")
