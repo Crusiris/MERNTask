@@ -1,10 +1,11 @@
 import React, { useContext, Fragment } from 'react';
+import DeleteProject from './DeleteProject';
 import FormTask  from '../task/FormTask';
 import ListTask  from '../task/ListTask';
 import home from '../img/home.svg';
 import ProjectContext from '../../context/projects/projectContext';
 import useStyles from './style';
-import { Grid, Typography, Grow } from '@material-ui/core';
+import { Grid, Typography, Grow, Divider } from '@material-ui/core';
 
 const ContainerMain = ({handleDrawerToggle}) => {
     const classes = useStyles();
@@ -26,6 +27,8 @@ const ContainerMain = ({handleDrawerToggle}) => {
                             <Grid item xs={12} md={12}> 
                              <ListTask handleDrawerToggle={handleDrawerToggle}/>
                             </Grid>
+                            <Divider/>
+                            <DeleteProject />
                         </Fragment>
                         :
                         (<Grow in={true} timeout={1000}>
