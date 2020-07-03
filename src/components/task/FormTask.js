@@ -78,6 +78,7 @@ const FormTask = () => {
 
         //validar
         if(name.trim() === ''){
+            validateFormTask();
             showMsjAlert("The task's name is required'", 'error');
             return
         }
@@ -108,7 +109,7 @@ const FormTask = () => {
                <Grid container justify="center" direction="column" spacing={1} >
                     <Grid item>
                             <form onSubmit={onSubmitTask}>
-                                <FormControl fullWidth variant="outlined" error={alertmsg}>
+                                <FormControl fullWidth variant="outlined" error={errortask}>
                                     <InputLabel htmlFor="outlined-adornment-password">Task's name</InputLabel>
                                     <OutlinedInput
                                         size="small"

@@ -7,7 +7,7 @@ import {SHOW_MSG, HIDE_MSG} from '../../types';//importando types
 const ValidationState = props =>{
 
     const initialState = {
-        alertmsg:null
+        alertmsg:''
     }
 
     const [ state, dispatch ]= useReducer(validationReducer, initialState)

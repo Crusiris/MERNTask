@@ -12,7 +12,7 @@ const FormProject = () => {
     //obteniendo el  context con useContext
     const projectsContext = useContext(projectContext);
     //Destructurin del context
-    const { form, showFormAddProject, hideFormAddProject, addProject, showErrorMsj } = projectsContext;
+    const { form, showFormAddProject, hideFormAddProject, addProject, errorform, showErrorMsj } = projectsContext;
    
     const validationContext = useContext(ValidationContext);//Extrayendo context usando USECONTEXT()
     const { alertmsg, showMsjAlert } = validationContext; //Extrayendo funciones y state del context
@@ -57,6 +57,7 @@ const FormProject = () => {
 
         //Validar el proyecto
         if (name===""){
+            showErrorMsj();
             showMsjAlert("The project's name is required'", 'error');
             return null
         }
@@ -78,7 +79,7 @@ const FormProject = () => {
              <Grid container direction="column" justify="center" spacing={1}>
                 <Grid item>
                     <form onSubmit={onSubmitProject}>
-                        <FormControl fullWidth variant="outlined" error={alertmsg} size="small">
+                        <FormControl fullWidth variant="outlined" error={errorform} size="small">
                         <InputLabel htmlFor="outlined-adornment-password">Project's name</InputLabel>
 
                         <OutlinedInput
