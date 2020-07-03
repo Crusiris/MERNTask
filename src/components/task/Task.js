@@ -1,5 +1,5 @@
 import React, {Fragment, useContext, useState} from 'react';
-//import EditTask from './EditTask';
+import EditTask from './EditTask';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
 import { Grid, Typography, Paper, Button, IconButton, Grow } from '@material-ui/core';
@@ -62,17 +62,19 @@ const changeState = task =>{
 }
 
 //Obteniendo tarea a editar
-const selectTask = task => {
-    selecTaskCurrent(task)
-}
+// const selectTask = task => {
+//     selecTaskCurrent(task)
+// }
 
 
 
     return ( 
 
         <Fragment>
-            
-                {/* <EditTask taskToEdit={task} setEdit={setEdit} /> */}
+                {edit ? <EditTask taskToEdit={task} setEdit={setEdit} /> 
+                
+                :
+
                 <Grid item >
                     <Grow in={animation} timeout={{ enter: 1000, exit: 200 }} unmountOnExit>
                         <Paper className={classes.paper} elevation={elevation} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -88,7 +90,7 @@ const selectTask = task => {
                                             :
                                             <Button color="secondary" className={classes.btn} onClick={()=> changeState(task)} >Incomplete</Button>
                                         }
-                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={()=> selectTask(task)}>
+                                        <IconButton aria-label="delete" size="small" className={classes.btn} onClick={handleEdit}>
                                             <EditIcon fontSize="small" />
                                         </IconButton>
                                         <IconButton aria-label="delete" size="small" className={classes.btn} onClick={()=>onClickDelete(task._id)} >
@@ -101,7 +103,8 @@ const selectTask = task => {
                     </Grow>
 
                 </Grid>
-    
+                
+                }
         </Fragment>
 
 

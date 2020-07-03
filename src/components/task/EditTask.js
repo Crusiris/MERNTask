@@ -35,7 +35,7 @@ const EditTask = ({ taskToEdit, setEdit }) => {
    const handleChange = (e) => {
     setTaskEdit({
         ...taskEdit,
-        name: event.target.value
+        [e.target.name]:e.target.value
     })
     setError(false);
     setHelper('');
@@ -45,13 +45,13 @@ const EditTask = ({ taskToEdit, setEdit }) => {
         event.preventDefault();
         
         //LLamando a funcion que actualiza la tarea
-        updateTask(task);
+        updateTask(taskEdit);
         setEdit(false);
 
         //Get the actual tasks again
         selecTaskCurrent(projectCurrent._id);
         // Clear fields
-        setTask(null);
+        setTaskEdit(null);
     }
  
  return(
@@ -66,7 +66,7 @@ const EditTask = ({ taskToEdit, setEdit }) => {
                                 autoFocus
                                 id="name-of-the-task"
                                 type='text'
-                                value={task.name}
+                                value={taskEdit.name}
                                 name="name"
                                 onChange={handleChange}
                                 autoComplete="off"
