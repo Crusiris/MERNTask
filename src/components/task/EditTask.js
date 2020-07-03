@@ -1,7 +1,9 @@
 import React, { Fragment, useState, useContext } from 'react';
+import Alerta from '../alert/Alerta';
 // Context import
 import ProjectContext from '../../context/projects/projectContext';
 import TaskContext from '../../context/tasks/taskContext';
+import ValidationContext from '../../context/validation/validationContext';
 // @Material-UI imports
 import { Grid, Button, FormControl, InputAdornment, InputLabel, OutlinedInput, FormHelperText } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,10 +16,13 @@ const EditTask = ({ taskToEdit, setEdit }) => {
 
   //Context State
   const taskContext = useContext(TaskContext);
-  const { updateTask, selecTaskCurrent, validateFormTask } = taskContext;
+  const { updateTask, selecTaskCurrent, validateFormTask, cleanTask } = taskContext;
 
   const projectContext = useContext(ProjectContext);
   const { projselected } = projectContext;
+    
+  const validationContext = useContext(ValidationContext);
+  const { alertmsg, showMsjAlert } = validationContext;
 
   //Destructuring del state projselected
  const [ projectCurrent ] = projselected;
@@ -51,7 +56,8 @@ const EditTask = ({ taskToEdit, setEdit }) => {
         //Get the actual tasks again
         selecTaskCurrent(projectCurrent._id);
         // Clear fields
-        setTaskEdit(null);
+        cleanTask();
+        showMsjAlert("The task's successfully updated'", 'success');
     }
  
  return(

@@ -1,6 +1,9 @@
 import React, { Fragment, useContext, useState, useEffect} from 'react';
+//Importando Context
 import projectContext  from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
+import ValidationContext from '../../context/validation/validationContext';
+import Alerta from '../alert/Alerta';
 // @Material-UI imports
 import { Grid, Button, FormControl, InputAdornment, InputLabel, OutlinedInput, Container, FormHelperText } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -18,6 +21,9 @@ const FormTask = () => {
      //Destructurin del context para obtener el state de projecSelecte 
      const tasksContext = useContext(taskContext);
      const { hideFormTask, showFormTask, taskselect, addTask, errortask,  validateFormTask, getTasks, updateTask, cleanTask, formTask } = tasksContext;
+
+     const validationContext = useContext(ValidationContext);//Extrayendo context usando USECONTEXT()
+     const { alertmsg, showMsjAlert } = validationContext;
 
      useEffect(()=>{
          if(taskselect !== null){
@@ -72,7 +78,7 @@ const FormTask = () => {
 
         //validar
         if(name.trim() === ''){
-            validateFormTask();
+            showMsjAlert("The task's name is required'", 'error');
             return
         }
 
@@ -82,11 +88,7 @@ const FormTask = () => {
           //agregar la nueva tarea
             task.projectcreate = projectCurrent._id; //Añadiendo id del proyecto a la tarea, para relacionar
             addTask(task);
-
-        }else{
-            updateTask(task)
-            //Eliminamos la tarea seleccionada
-            cleanTask();
+            showMsjAlert("The task's created successfully'", 'success');
         }
 
         //Obtener y filtrar las tareas del proyecto actual,pasando el id del proyecto seleccionado
@@ -106,7 +108,7 @@ const FormTask = () => {
                <Grid container justify="center" direction="column" spacing={1} >
                     <Grid item>
                             <form onSubmit={onSubmitTask}>
-                                <FormControl fullWidth variant="outlined" error={errortask}>
+                                <FormControl fullWidth variant="outlined" error={alertmsg}>
                                     <InputLabel htmlFor="outlined-adornment-password">Task's name</InputLabel>
                                     <OutlinedInput
                                         size="small"
@@ -157,6 +159,7 @@ const FormTask = () => {
                 </Grid>
                 }
             </Container>
+            {alertmsg ? <Alerta  message={alertmsg.msg} type={alertmsg.category} autoclose={3000}/> :null}
         </Fragment>
      );
 }

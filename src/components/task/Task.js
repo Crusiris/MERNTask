@@ -1,5 +1,7 @@
 import React, {Fragment, useContext, useState} from 'react';
 import EditTask from './EditTask';
+import Alerta from '../alert/Alerta';
+import ValidationContext from '../../context/validation/validationContext';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
 import { Grid, Typography, Paper, Button, IconButton, Grow } from '@material-ui/core';
@@ -17,10 +19,13 @@ const Task = ({task}) => {
 
 ////Obteniendo context en el componente
 const tasksContext = useContext(taskContext);
+
 //Destructuring del context [Extrayendo los state y funciones que necesitaremos]
 const { deleteTask, updateTask, selecTaskCurrent} = tasksContext;
 
-
+//Extrayendo context usando USECONTEXT()
+const validationContext = useContext(ValidationContext);
+const { alertmsg, showMsjAlert } = validationContext;
 //Destructuring del state projselected
 const [ projectCurrent ] = projselected;
 
@@ -30,43 +35,39 @@ const [ projectCurrent ] = projselected;
  const [edit, setEdit] = useState(false);
 
   // Funtions
-  const handleMouseEnter = () => {
-    setElevation(4);
-}
-const handleMouseLeave = () => {
-    setElevation(1);
-}
+    const handleMouseEnter = () => {
+        setElevation(4);
+    }
 
-const handleEdit = () => {
-    setEdit(true);
-}
+    const handleMouseLeave = () => {
+        setElevation(1);
+    }
+
+    //Funcion que cambia la tarea a un stado de editar
+    const handleEdit = () => {
+        setEdit(true);
+    }
+
 //Funcion eliminar tarea
 const onClickDelete = id =>{
     setTimeout(() => {
     deleteTask(id, projectCurrent._id);
-   // getTasks(projectCurrent.id);
   }, 200);
 
   setAnimation(false);
+  showMsjAlert("The task's successfully removed'", 'success');
 }
 
-//Cambiar estado de tarea
+//Cambiar estado de tarea, de incompleto a completo y vicersa
 const changeState = task =>{
     if(task.state){
         task.state = false;
     }else{
         task.state = true;
     }
-   
+   //actualizando el state en base de datos
    updateTask(task);
 }
-
-//Obteniendo tarea a editar
-// const selectTask = task => {
-//     selecTaskCurrent(task)
-// }
-
-
 
     return ( 
 
@@ -105,6 +106,7 @@ const changeState = task =>{
                 </Grid>
                 
                 }
+                {alertmsg ? <Alerta  message={alertmsg.msg} type={alertmsg.category} autoclose={3000}/> :null}
         </Fragment>
 
 
