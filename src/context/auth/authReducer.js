@@ -23,7 +23,7 @@ export default (state, action) => {
                user:null,
                authenticated:null,
                message:action.payload,
-               loading:false   
+               loading:false,
             }
         case GET_USER:
             return {

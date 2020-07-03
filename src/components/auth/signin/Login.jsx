@@ -5,7 +5,7 @@ import ValidationContext from '../../../context/validation/validationContext';//
 import Copyright from '../../copyright/Copyright';//Componente
 import Alerta from '../../alert/Alerta';
 //Material UI
-import Avatar from '@material-ui/core/Avatar';
+import {Avatar, FormControl} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -85,52 +85,54 @@ const Login = (props) => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate onSubmit={onSubmit} >
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        value={email}
-                        onChange={onChangeLogin}
-                        type="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={onChangeLogin}
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >Sign In </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link to={'/nueva-cuenta'} variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
+                <form className={classes.form} noValidate onSubmit={onSubmit}>  
+                   
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            value={email}
+                            onChange={onChangeLogin}
+                            type="email"
+                            autoFocus
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={onChangeLogin}
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >Sign In </Button>
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                <Link to={'/nueva-cuenta'} variant="body2">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                   
                 </form>
             </div>
             <Box mt={8}>

@@ -13,7 +13,8 @@ const AuthState = props => {
         authenticated: null,
         user: null,
         message: null,
-        loading:true
+        loading:true,
+        error:false
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
