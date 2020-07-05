@@ -5,7 +5,7 @@ import ValidationContext from '../../../context/validation/validationContext';//
 import Copyright from '../../copyright/Copyright';//Componente
 import Alerta from '../../alert/Alerta';
 //Material UI
-import {Avatar, FormControl} from '@material-ui/core';
+import {Avatar} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';

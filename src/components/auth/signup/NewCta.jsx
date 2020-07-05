@@ -40,6 +40,7 @@ const NewCta = (props) => {
 
         if(message){
             showMsjAlert(message.msg, message.category);
+
         }
        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [message, authenticated, ]);
@@ -68,7 +69,7 @@ const NewCta = (props) => {
         e.preventDefault();
 
         //Validando que no existan campos vacios
-        if(firstName.trim() === '' || email.trim() === '' || password.trim() === '' || confirmpassword.trim() === ''){
+        if(firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '' || confirmpassword.trim() === ''){
             showMsjAlert('Todos los campos son obligatorios', 'error');
             return;
         }

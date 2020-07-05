@@ -22,6 +22,7 @@ const AuthState = props => {
     //FUNCIONES
     //REGISTRAR USUARIO
     const singInUser = async data => {
+        await console.log(data);
         try {
             const res = await clientAxios.post('/api/usuarios', data);
 
@@ -34,7 +35,7 @@ const AuthState = props => {
             userAuth();
 
         } catch (error) {
-           //console.log(error.response);
+           console.log(error.response.data.errores);
 
             const alertmsg = {
                 msg:error.response.data.msg,
